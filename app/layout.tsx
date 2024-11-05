@@ -3,7 +3,7 @@ import Navigation from "../components/navigation";
 export const metadata: Metadata = {
   title: {
     template: "%s | Next Movies",
-    default: "Next Movies",
+    default: "React & Next Framework",
   },
 };
 
