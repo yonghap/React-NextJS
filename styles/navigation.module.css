@@ -1,0 +1,7 @@
+.nav {
+	background:red;
+	padding:50px 100px;
+}
+.list {
+	display:flex
+}
