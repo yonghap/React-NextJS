@@ -1,7 +1,18 @@
 .nav {
-	background:red;
+	background:#eee;
 	padding:50px 100px;
+}
+.logo {
+	margin-bottom:20px;
+	font-size:2rem;
+	font-weight:bold;
 }
 .list {
 	display:flex
+}
+.list li {
+	font-size:18px;
+}
+.list li ~ li {
+	margin-left:20px;
 }

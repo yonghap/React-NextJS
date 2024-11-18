@@ -8,7 +8,7 @@ export default function Navigation() {
   const path = usePathname();
   return (
     <nav className={styles.nav}>
-      <h1>HOME</h1>
+      <h1 className={styles.logo}>HOME</h1>
       <ul className={styles.list}>
         <li>
           <Link href="/">Home</Link> {path === "/" ? "v" : ""}
