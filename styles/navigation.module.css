@@ -1,18 +1,28 @@
-.nav {
-	background:#eee;
-	padding:50px 100px;
+.nav{
+	background-color: #2d2d2d;
+	position: fixed;
+	width: 30%;
+	margin: 0 auto;
+	top: 20px;
+	border-radius: 50px;
+	padding: 20px 0px;
+	left: 50%;
+	z-index: 10;
+	transform: translateX(-50%);
 }
-.logo {
-	margin-bottom:20px;
-	font-size:2rem;
-	font-weight:bold;
+
+.nav ul {
+	display: flex;
+	justify-content: center;
+	gap: 50px;
 }
-.list {
-	display:flex
+
+.nav ul li {
+	list-style: none;
+	transform: none;
+	transition: all 0.1s ease-in-out;
 }
-.list li {
-	font-size:18px;
-}
-.list li ~ li {
-	margin-left:20px;
+
+.nav ul li:hover {
+	transform: scale(1.05);
 }
