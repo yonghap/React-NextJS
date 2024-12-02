@@ -7,11 +7,9 @@ export default function Navigation() {
   const path = usePathname();
   return (
     <header>
-      <div
-        className={`max-w-5xl m-auto flex justify-between items-center py-8`}
-      >
-        <h1 className={`text-4xl`}>Treveller</h1>
-        <ul class={`flex`}>
+      <div className="max-w-5xl m-auto flex justify-between items-center py-8">
+        <h1 className="text-4xl">Treveller</h1>
+        <ul className="flex [&_li]:ml-5">
           <li>
             <a href="#">지역별</a>
           </li>
