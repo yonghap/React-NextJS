@@ -13,22 +13,6 @@ export const metadata = {
   title: "HOME",
 };
 
-function Todos() {
-  const { isPending, error, data, isFetching } = useQuery({
-    queryKey: ["repoData"],
-    queryFn: async () => {
-      const response = await fetch(
-        "https://api.github.com/repos/TanStack/query"
-      );
-      return await response.json();
-    },
-  });
-
-  if (isPending) return "Loading...";
-
-  if (error) return "An error has occurred: " + error.message;
-}
-
 async function getMovies() {
   // await new Promise((resolve) => setTimeout(resolve, 1000));
   const response = await fetch(API_URL);
@@ -36,9 +20,8 @@ async function getMovies() {
   return json;
 }
 
-export default async function HomePage() {
-  const movies = await getMovies();
-  return <div>123</div>;
+export default function HomePage() {
+  return <div>{JSON.stringify("test")}</div>;
   /*
   return (
     <div className={styles.container}>
