@@ -1,12 +1,14 @@
 "use client";
+import { useQuery } from "@tanstack/react-query";
+import { getQueryClient } from "../app/get-query-client";
 import { getLocations } from "./client/locations";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
 
 export default function Home() {
-  const query = useQuery({ queryKey: ["todos"], queryFn: getLocations });
-  const queryClient = useQueryClient();
+  const queryClient = getQueryClient();
 
-  if (query.isLoading) return <div>Loading...</div>;
+  void queryClient.prefetchQuery(getLocations);
+  const { data } = useSuspenseQuery(getLocations);
 
-  return <div>{query}</div>;
+  return <div>{JSON.stringify(data)}</div>;
 }

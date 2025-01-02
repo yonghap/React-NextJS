@@ -1,7 +1,7 @@
 import "./global.css";
 import { Metadata } from "next";
 import Navigation from "../components/navigation";
-import { TanstackProvider } from "../components/proviers/tanstack-provider";
+import { TanstackProvider } from "../components/providers/tanstack-provider";
 
 export const metadata: Metadata = {
   title: {
