@@ -16,10 +16,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="ko">
       <body>
-        <Navigation />
-        <TanstackProvider>{children}</TanstackProvider>
+        <div
+          id="wrap"
+          className="h-screen bg-gradient-to-r from-sky-900 to-sky-950"
+        >
+          <Navigation />
+          <TanstackProvider>{children}</TanstackProvider>
+        </div>
       </body>
     </html>
   );

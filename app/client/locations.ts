@@ -1,12 +1,12 @@
 import { queryOptions } from "@tanstack/react-query";
 
-export const getLocations = queryOptions({
-  queryKey: ["locations"],
+export const getUser = {
+  queryKey: ["user"],
   queryFn: async () => {
     const response = await fetch(
-      "http://apis.data.go.kr/B551011/KorService1/areaBasedList1?contentTypeId=12&serviceKey=hhPRU4TihqC7sGrFL7uNTmty4I7Hng2A57yNkCPaRsb%2BbnlxyetnLDADCFy%2FDh0KshzZmRBEyFO1VEMKNHeuPg%3D%3D&numOfRows=20&pageNo=1&MobileOS=ETC&MobileApp=AppTest&_type=json"
+      "http://gameb.co.kr/steam/user/getuser/?id=" + "76561198037392202"
     );
 
     return response.json();
   },
-});
+};
