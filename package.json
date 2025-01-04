@@ -20,9 +20,9 @@
     "@tanstack/eslint-plugin-query": "^5.61.6",
     "@types/node": "22.7.1",
     "@types/react": "18.3.9",
+    "@vanilla-extract/next-plugin": "^2.4.8",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.49",
-    "tailwindcss": "^3.4.15",
     "typescript": "^5.6.2"
   }
 }

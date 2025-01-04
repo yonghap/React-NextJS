@@ -1,12 +1,17 @@
 "use client";
+
+import Link from "next/link";
+import * as styles from "./Header.css";
 import { useQuery } from "@tanstack/react-query";
-import { Suspense } from "react";
-import { useSearchParams } from "next/navigation";
+
+import { usePathname, useSearchParams } from "next/navigation";
 import { getQueryClient } from "../app/get-query-client";
-import { getUser } from "./api/userAPI";
 import { useSuspenseQuery } from "@tanstack/react-query";
 
-export default function Home() {
+import { getUser } from "../app/api/userAPI";
+
+export default function Navigation() {
+  const path = usePathname();
   const queryClient = getQueryClient();
   const searchParams = useSearchParams();
   let data = null;
@@ -17,17 +22,7 @@ export default function Home() {
       queryKey: ["user"],
       queryFn: () => getUser(steamID),
     });
-    console.log("data === ", data);
   }
 
-  return (
-    <div>
-      <div className="info">
-        <h2>
-          <img src={data.data.avatarfull} />
-        </h2>
-        <h3>{data.data.personaname}</h3>
-      </div>
-    </div>
-  );
+  return <header id="header"></header>;
 }
