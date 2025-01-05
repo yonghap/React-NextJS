@@ -1,6 +1,6 @@
 import { style, globalStyle } from "@vanilla-extract/css";
 
-globalStyle("html, body, ul, li, ol, p", {
+globalStyle("html, body, ul, li, ol, p,h1,h2,h3,h4,h5,h6", {
   margin: 0,
   padding: 0,
 });
@@ -24,4 +24,10 @@ globalStyle("a,img", {
 
 globalStyle("img", {
   maxWidth: "100%",
+});
+
+globalStyle("button", {
+  border: "none",
+  background: "none",
+  cursor: "pointer",
 });

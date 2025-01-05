@@ -1,8 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import * as styles from "./Header.css";
+import * as common from "@/styles/common.css";
+import * as header from "@/styles/header.css";
 import { useQuery } from "@tanstack/react-query";
+import { logo } from "../../public/images/index";
 
 import { usePathname, useSearchParams } from "next/navigation";
 import { getQueryClient } from "../app/get-query-client";
@@ -23,6 +25,16 @@ export default function Navigation() {
       queryFn: () => getUser(steamID),
     });
   }
+  console.log("lll", logo);
 
-  return <header id="header"></header>;
+  // return (
+  // <header id="header">
+  //   <div className={`${common.row} ${header.header__wrap}`}>
+  //     <h1 className={header.logo}>
+  //       <img src={logo.src} />
+  //       <span className={header.title}>SteamWorld</span>
+  //     </h1>
+  //   </div>
+  // </header>
+  // );
 }

@@ -1,4 +1,4 @@
-import "./styles/reset.css";
+import "@/styles/reset.css";
 import { Metadata } from "next";
 import Navigation from "@/components/navigation";
 import { TanstackProvider } from "../components/providers/tanstack-provider";
