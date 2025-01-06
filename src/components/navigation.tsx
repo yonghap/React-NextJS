@@ -13,28 +13,28 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import { getUser } from "../app/api/userAPI";
 
 export default function Navigation() {
-  const path = usePathname();
-  const queryClient = getQueryClient();
-  const searchParams = useSearchParams();
-  let data = null;
-  if (searchParams.has("openid.claimed_id")) {
-    const getFullId = searchParams.get("openid.claimed_id");
-    const steamID = getFullId.split("/")[5];
-    data = useSuspenseQuery({
-      queryKey: ["user"],
-      queryFn: () => getUser(steamID),
-    });
-  }
-  console.log("lll", logo);
+  // const path = usePathname();
+  // const queryClient = getQueryClient();
+  // const searchParams = useSearchParams();
+  // let data = null;
+  // if (searchParams.has("openid.claimed_id")) {
+  //   const getFullId = searchParams.get("openid.claimed_id");
+  //   const steamID = getFullId.split("/")[5];
+  //   data = useSuspenseQuery({
+  //     queryKey: ["user"],
+  //     queryFn: () => getUser(steamID),
+  //   });
+  // }
+  // console.log("lll", logo);
 
-  // return (
-  // <header id="header">
-  //   <div className={`${common.row} ${header.header__wrap}`}>
-  //     <h1 className={header.logo}>
-  //       <img src={logo.src} />
-  //       <span className={header.title}>SteamWorld</span>
-  //     </h1>
-  //   </div>
-  // </header>
-  // );
+  return (
+    <header id="header">
+      <div className={`${common.row} ${header.header__wrap}`}>
+        <h1 className={header.logo}>
+          <img className={header.logo__img} src={logo.src} />
+          <span className={header.title}>SteamWorld</span>
+        </h1>
+      </div>
+    </header>
+  );
 }
