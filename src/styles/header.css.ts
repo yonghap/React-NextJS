@@ -9,11 +9,11 @@ export const header__wrap = style({
 export const logo = style({
   display: "flex",
   alignItems: "center",
-  fontSize: "1.2rem",
+  fontSize: "1.3rem",
   color: "#fff",
 });
 export const logo__img = style({
-  maxWidth: "60px",
+  maxWidth: "70px",
 });
 
 export const title = style({

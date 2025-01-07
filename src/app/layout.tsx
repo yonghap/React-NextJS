@@ -19,10 +19,7 @@ export default function RootLayout({
     <html lang="ko">
       <body>
         <div id="wrap">
-          <TanstackProvider>
-            <Navigation />
-            {children}
-          </TanstackProvider>
+          <TanstackProvider>{children}</TanstackProvider>
         </div>
       </body>
     </html>
