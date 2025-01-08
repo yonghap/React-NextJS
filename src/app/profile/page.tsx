@@ -36,7 +36,13 @@ export default async function MyGames() {
           </div>
           <ul className={profile.profile__list}>
             {menuList.map((i) => {
-              return <li>{i.name}</li>;
+              return (
+                <li className={profile.profile__item}>
+                  <a className={profile.profile__link} href="#">
+                    {i.name}
+                  </a>
+                </li>
+              );
             })}
           </ul>
         </div>

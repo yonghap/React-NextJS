@@ -16,6 +16,15 @@ export const profile__name = style({
 });
 
 export const profile__list = style({
-  marginLeft: "6px",
+  marginTop: "15px",
   color: "#fff",
+});
+
+export const profile__item = style({
+  textAlign: "center",
+});
+export const profile__link = style({
+  display: "block",
+  color: "#fff",
+  lineHeight: "34px",
 });

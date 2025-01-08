@@ -23,6 +23,9 @@ globalStyle("ul,li,ol", {
 globalStyle("a,img", {
   verticalAlign: "top",
 });
+globalStyle("a", {
+	textDecoration:"none"
+});
 
 globalStyle("img", {
   maxWidth: "100%",
