@@ -1,5 +1,5 @@
 // 친구 페이지 ()
-import * as common from "@/styles/common.css";
+// import * as common from "@/styles/common.css";
 import * as intro from "@/styles/intro.css";
 import Navigation from "@/components/navigation";
 import * as header from "@/styles/header.css";
