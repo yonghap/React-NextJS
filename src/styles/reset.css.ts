@@ -12,11 +12,6 @@ globalStyle("html,body", {
   height: "100%",
 });
 
-globalStyle("body", {
-  background:
-    "url('https://store.fastly.steamstatic.com/public/images/v6/colored_body_top.png?v=2') no-repeat center top",
-  backgroundSize: "cover",
-});
 globalStyle("ul,li,ol", {
   listStyle: "none",
 });
@@ -24,7 +19,7 @@ globalStyle("a,img", {
   verticalAlign: "top",
 });
 globalStyle("a", {
-	textDecoration:"none"
+  textDecoration: "none",
 });
 
 globalStyle("img", {

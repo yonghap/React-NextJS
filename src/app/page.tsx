@@ -4,29 +4,43 @@ import { useSearchParams } from "next/navigation";
 import { getQueryClient } from "../app/get-query-client";
 import { getUser } from "./api/userAPI";
 import { useSuspenseQuery } from "@tanstack/react-query";
+import * as common from "@/styles/common.css";
+import * as code from "@/constants/code";
 
 export default async function Home() {
-  const test = fetch(
-    "https://apihub.kma.go.kr/api/json?authKey=msy5V4ZOSXqMuVeGThl67A"
+  const test = await fetch(
+    "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst?serviceKey=hhPRU4TihqC7sGrFL7uNTmty4I7Hng2A57yNkCPaRsb%2BbnlxyetnLDADCFy%2FDh0KshzZmRBEyFO1VEMKNHeuPg%3D%3D&nomOfRows=10&pageNo=1&dataType=json&base_date=20250113&base_time=0600&nx=55&ny=127"
   );
-  const data = await test.json();
-  console.log(data.body);
-  // const queryClient = getQueryClient();
-  // const searchParams = useSearchParams();
-  // let data = null;
-  // if (searchParams.has("openid.claimed_id")) {
-  //   const getFullId = searchParams.get("openid.claimed_id");
-  //   const steamID = getFullId.split("/")[5];
-  //   data = useSuspenseQuery({
-  //     queryKey: ["user"],
-  //     queryFn: () => getUser(steamID),
-  //   });
-  //   console.log("data === ", data);
-  // }
+  const json = await test.json();
+  const data = json.response.body;
+  const items = data.items.item;
+  console.log(items);
 
   return (
     <div>
-      <div className="info">12111111111111113</div>
+      <div className={common.boxs}>
+        <div className={common.box}>
+          <div className="info">
+            <div className={common.info__wrap}>
+              {items.map((item) => {
+                return item.category === "T1H" ? (
+                  <div className={common.info__temperature}>
+                    {" "}
+                    {item.obsrValue + code.WEATHER_UNIT[item.category]}{" "}
+                  </div>
+                ) : (
+                  ""
+                );
+              })}
+              <div className={common.info__icon}>
+                123
+                <br />
+                123
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

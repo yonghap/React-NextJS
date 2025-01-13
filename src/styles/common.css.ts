@@ -1,5 +1,13 @@
 import { style } from "@vanilla-extract/css";
 
+export const wrap = style({
+  maxWidth: "460px",
+  minHeight: "100vh",
+  margin: "0 auto",
+  borderLeft: "1px solid #ddd",
+  borderRight: "1px solid #ddd",
+});
+
 export const row = style({
   maxWidth: "1000px",
   margin: "0 auto",
@@ -11,4 +19,26 @@ export const row__small = style({
   border: "1px solid #666",
   borderRadius: "10px",
   background: "rgba(37,45,53,0.9)",
+});
+
+export const boxs = style({
+  padding: "15px 0",
+  backgroundColor: "#ddd",
+});
+
+export const box = style({
+  margin: "0 15px 0",
+  padding: "10px",
+  backgroundColor: "#fff",
+});
+
+export const info__wrap = style({
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+});
+
+export const info__temperature = style({
+  fontSize: "3rem",
+  fontWeight: "bold",
 });
