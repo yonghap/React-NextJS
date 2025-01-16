@@ -34,11 +34,21 @@ export const box = style({
 
 export const info__wrap = style({
   display: "flex",
-  justifyContent: "space-between",
+  justifyContent: "center",
   alignItems: "center",
 });
 
 export const info__temperature = style({
   fontSize: "3rem",
   fontWeight: "bold",
+});
+
+export const icon__sky = style({
+  display: "inline-block",
+  width: "30px",
+  height: "30px",
+});
+
+export const icon__sky4 = style({
+  background: "url(/src/assets/images/hail.png)",
 });
