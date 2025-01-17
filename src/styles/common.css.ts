@@ -22,33 +22,54 @@ export const row__small = style({
 });
 
 export const boxs = style({
-  padding: "15px 0",
-  backgroundColor: "#ddd",
+  padding: "15px",
+  backgroundColor: "#eee",
 });
 
 export const box = style({
-  margin: "0 15px 0",
-  padding: "10px",
+  margin: "0 15px 15px",
+  padding: "15px",
   backgroundColor: "#fff",
 });
 
 export const info__wrap = style({
   display: "flex",
-  justifyContent: "center",
   alignItems: "center",
+  justifyContent: "space-between",
+});
+
+export const info__box = style({
+  textAlign: "right",
 });
 
 export const info__temperature = style({
-  fontSize: "3rem",
+  height: "2.4rem",
+  fontSize: "2.4rem",
   fontWeight: "bold",
+  lineHeight: "2.4rem",
+  color: "#333",
 });
 
-export const icon__sky = style({
+export const info__icon = style({
+  marginLeft: "6px",
+});
+
+export const icon__weather = style({
   display: "inline-block",
-  width: "30px",
-  height: "30px",
+  width: "6.4rem",
+  height: "6.4rem",
+  backgroundSize: "cover",
+  textIndent: "-9999px",
 });
 
-export const icon__sky4 = style({
-  background: "url(/src/assets/images/hail.png)",
+import * as icon_weather from "@/assets/images/icon_weather";
+
+export const icon__weather1 = style({
+  backgroundImage: "url(" + icon_weather.icon_weather_sunny.src + ")",
+});
+export const icon__weather2 = style({
+  backgroundImage: "url(" + icon_weather.icon_weather_cloudy.src + ")",
+});
+export const icon__weather3 = style({
+  backgroundImage: "url(" + icon_weather.icon_weather_cloudy.src + ")",
 });
