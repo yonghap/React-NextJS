@@ -11,7 +11,7 @@ export async function getCurrentWeather() {
   const currentHours = targetDate.getHours(); // 14
   let target = 0;
   for (var i = 0; i < forecastTime.length; i++) {
-    if (currentHours <= 1) {
+    if (currentHours <= 2) {
       targetDate = new Date(targetDate.setDate(targetDate.getDate() - 1));
       target = 23;
       break;
@@ -29,7 +29,7 @@ export async function getCurrentWeather() {
   const queryTime = ("00" + target.toString()).slice(-2) + "00";
 
   const test = await fetch(
-    "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=hhPRU4TihqC7sGrFL7uNTmty4I7Hng2A57yNkCPaRsb%2BbnlxyetnLDADCFy%2FDh0KshzZmRBEyFO1VEMKNHeuPg%3D%3D&numOfRows=20&pageNo=1&base_date=" +
+    "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=hhPRU4TihqC7sGrFL7uNTmty4I7Hng2A57yNkCPaRsb%2BbnlxyetnLDADCFy%2FDh0KshzZmRBEyFO1VEMKNHeuPg%3D%3D&numOfRows=150&pageNo=1&base_date=" +
       queryDate +
       "&base_time=" +
       queryTime +
@@ -37,26 +37,43 @@ export async function getCurrentWeather() {
   );
   const json = await test.json();
   const data = json.response.body;
+
   return data.items.item;
+}
+
+function setNumber(str: string): number {
+  console.log("dddddddddddd", str);
+
+  const cutNumber = str.substr(0, 2);
+  return Number(cutNumber);
 }
 
 export default async function MainHourly() {
   const info = await getCurrentWeather();
   let hour;
   return (
-    <div className={common.box}>
-      <div>
-        {info.map((item, index) => {
-          if (index === 0) {
-            hour = item.fcstTime;
-          }
-
-          return hour !== item.fcstTime && item.category === "TMP" ? (
-            <div>111</div>
-          ) : (
-            ""
-          );
-        })}
+    <div className={common.hourly}>
+      <div className={common.hourly__wrap}>
+        <div className={common.hourly__box}>
+          <ul className={common.hourly__list}>
+            {info.map((item, index) => {
+              if (item.fcstTime && item.category === "TMP" && index >= 30) {
+                return (
+                  <li className={common.hourly__listwrap}>
+                    <div className={common.hourly__listitem}>
+                      <div className={common.hourly__listtime}>
+                        {setNumber(item.fcstTime) + "시"}
+                      </div>
+                      <div className={common.hourly__listvalue}>
+                        {item.fcstValue}
+                      </div>
+                    </div>
+                  </li>
+                );
+              }
+            })}
+          </ul>
+        </div>
       </div>
     </div>
   );

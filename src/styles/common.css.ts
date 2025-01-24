@@ -54,6 +54,16 @@ export const info__icon = style({
   marginLeft: "6px",
 });
 
+export const hourly__list = style({
+  display: "flex",
+  flexWrap: "no-wrap",
+  overflowX: "scroll",
+  gap: "20px",
+});
+export const hourly__listwrap = style({
+  flex: "0 0 auto",
+});
+
 export const icon__weather = style({
   display: "inline-block",
   width: "6.4rem",

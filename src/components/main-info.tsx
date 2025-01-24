@@ -11,7 +11,7 @@ export async function getCurrentWeather() {
   const currentHours = targetDate.getHours(); // 14
   let target = 0;
   for (var i = 0; i < forecastTime.length; i++) {
-    if (currentHours <= 1) {
+    if (currentHours <= 2) {
       targetDate = new Date(targetDate.setDate(targetDate.getDate() - 1));
       target = 23;
       break;
@@ -43,35 +43,33 @@ export async function getCurrentWeather() {
 export default async function MainInfo() {
   const info = await getCurrentWeather();
   return (
-    <div className={common.box}>
-      <div className={common.info__wrap}>
-        <div className={common.info__icon}>
-          {info.map((i) => {
-            return (
-              i.category === "SKY" && (
-                <div
-                  className={`${common.icon__weather} ${common["icon__weather1"]}`}
-                >
-                  {i.fcstValue}
-                </div>
-              )
-            );
-          })}
-        </div>
-        <div className={common.info__box}>
-          {info.map((item) => {
-            return item.category === "TMP" ? (
-              <div className={common.info__temperature}>
-                {item.fcstValue + code.WEATHER_UNIT[item.category]}
+    <div className={common.info__wrap}>
+      <div className={common.info__icon}>
+        {info.map((i) => {
+          return (
+            i.category === "SKY" && (
+              <div
+                className={`${common.icon__weather} ${common["icon__weather1"]}`}
+              >
+                {i.fcstValue}
               </div>
-            ) : (
-              ""
-            );
-          })}
-          <div className="info__meta">
-            <div className="info__location">서울시 강남구</div>
-            <div className="info__yesterday">어제보다 6°나 높아요</div>
-          </div>
+            )
+          );
+        })}
+      </div>
+      <div className={common.info__box}>
+        {info.map((item) => {
+          return item.category === "TMP" ? (
+            <div className={common.info__temperature}>
+              {item.fcstValue + code.WEATHER_UNIT[item.category]}
+            </div>
+          ) : (
+            ""
+          );
+        })}
+        <div className="info__meta">
+          <div className="info__location">서울시 강남구</div>
+          <div className="info__yesterday">어제보다 6°나 높아요</div>
         </div>
       </div>
     </div>
