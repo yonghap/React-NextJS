@@ -9,6 +9,7 @@ import * as code from "@/constants/code";
 import * as icon_weather from "@/assets/images/icon_weather/index";
 import { icon__weather1, info__temperature } from "@/styles/common.css";
 import MainInfo from "@/components/main-info";
+import MainHourly from "@/components/main-hourly";
 // import icon_weather_sunny from "@/assets/images/icon_weather/sunny.png";
 
 export default async function Home() {
@@ -20,43 +21,7 @@ export default async function Home() {
         {/*시간대별 날씨*/}
         <div className={common.box}>
           <h2>시간대별 날씨</h2>
-          <ul>
-            <li>
-              <span>오후1시</span>
-              <span>맑음</span>
-              <span>3도</span>
-            </li>
-            <li>
-              <span>오후1시</span>
-              <span>맑음</span>
-              <span>3도</span>
-            </li>
-            <li>
-              <span>오후1시</span>
-              <span>맑음</span>
-              <span>3도</span>
-            </li>
-            <li>
-              <span>오후1시</span>
-              <span>맑음</span>
-              <span>3도</span>
-            </li>
-            <li>
-              <span>오후1시</span>
-              <span>맑음</span>
-              <span>3도</span>
-            </li>
-            <li>
-              <span>오후1시</span>
-              <span>맑음</span>
-              <span>3도</span>
-            </li>
-            <li>
-              <span>오후1시</span>
-              <span>맑음</span>
-              <span>3도</span>
-            </li>
-          </ul>
+          <MainHourly />
         </div>
         {/*일별 날씨*/}
         <div className={common.box}>

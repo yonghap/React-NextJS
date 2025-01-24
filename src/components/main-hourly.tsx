@@ -29,7 +29,7 @@ export async function getCurrentWeather() {
   const queryTime = ("00" + target.toString()).slice(-2) + "00";
 
   const test = await fetch(
-    "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=hhPRU4TihqC7sGrFL7uNTmty4I7Hng2A57yNkCPaRsb%2BbnlxyetnLDADCFy%2FDh0KshzZmRBEyFO1VEMKNHeuPg%3D%3D&numOfRows=10&pageNo=1&base_date=" +
+    "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=hhPRU4TihqC7sGrFL7uNTmty4I7Hng2A57yNkCPaRsb%2BbnlxyetnLDADCFy%2FDh0KshzZmRBEyFO1VEMKNHeuPg%3D%3D&numOfRows=20&pageNo=1&base_date=" +
       queryDate +
       "&base_time=" +
       queryTime +
@@ -40,39 +40,23 @@ export async function getCurrentWeather() {
   return data.items.item;
 }
 
-export default async function MainInfo() {
+export default async function MainHourly() {
   const info = await getCurrentWeather();
+  let hour;
   return (
     <div className={common.box}>
-      <div className={common.info__wrap}>
-        <div className={common.info__icon}>
-          {info.map((i) => {
-            return (
-              i.category === "SKY" && (
-                <div
-                  className={`${common.icon__weather} ${common["icon__weather1"]}`}
-                >
-                  {i.fcstValue}
-                </div>
-              )
-            );
-          })}
-        </div>
-        <div className={common.info__box}>
-          {info.map((item) => {
-            return item.category === "TMP" ? (
-              <div className={common.info__temperature}>
-                {item.fcstValue + code.WEATHER_UNIT[item.category]}
-              </div>
-            ) : (
-              ""
-            );
-          })}
-          <div className="info__meta">
-            <div className="info__location">서울시 강남구</div>
-            <div className="info__yesterday">어제보다 6°나 높아요</div>
-          </div>
-        </div>
+      <div>
+        {info.map((item, index) => {
+          if (index === 0) {
+            hour = item.fcstTime;
+          }
+
+          return hour !== item.fcstTime && item.category === "TMP" ? (
+            <div>111</div>
+          ) : (
+            ""
+          );
+        })}
       </div>
     </div>
   );
