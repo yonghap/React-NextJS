@@ -17,12 +17,12 @@ export default async function Home() {
     <div>
       <div className={common.boxs}>
         {/*기본 날씨 정보*/}
-	      <div className={common.box}>
+        <div className={common.box}>
           <MainInfo></MainInfo>
-	      </div>
+        </div>
         {/*시간대별 날씨*/}
         <div className={common.box}>
-          <h2>시간대별 날씨</h2>
+          <h2 className={common.box__title}>시간대별 날씨</h2>
           <MainHourly />
         </div>
         {/*일별 날씨*/}

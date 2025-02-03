@@ -28,58 +28,11 @@ export const boxs = style({
 
 export const box = style({
   margin: "0 15px 15px",
-  padding: "15px",
+  padding: "15px 15px 30px",
   backgroundColor: "#fff",
 });
 
-export const info__wrap = style({
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "space-between",
-});
-
-export const info__box = style({
-  textAlign: "right",
-});
-
-export const info__temperature = style({
-  height: "2.4rem",
-  fontSize: "2.4rem",
-  fontWeight: "bold",
-  lineHeight: "2.4rem",
-  color: "#333",
-});
-
-export const info__icon = style({
-  marginLeft: "6px",
-});
-
-export const hourly__list = style({
-  display: "flex",
-  flexWrap: "no-wrap",
-  overflowX: "scroll",
-  gap: "20px",
-});
-export const hourly__listwrap = style({
-  flex: "0 0 auto",
-});
-
-export const icon__weather = style({
-  display: "inline-block",
-  width: "6.4rem",
-  height: "6.4rem",
-  backgroundSize: "cover",
-  textIndent: "-9999px",
-});
-
-import * as icon_weather from "@/assets/images/icon_weather";
-
-export const icon__weather1 = style({
-  backgroundImage: "url(" + icon_weather.icon_weather_sunny.src + ")",
-});
-export const icon__weather2 = style({
-  backgroundImage: "url(" + icon_weather.icon_weather_cloudy.src + ")",
-});
-export const icon__weather3 = style({
-  backgroundImage: "url(" + icon_weather.icon_weather_cloudy.src + ")",
+export const box__title = style({
+  marginBottom: "12px",
+  fontSize: "1.2rem",
 });

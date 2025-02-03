@@ -1,5 +1,6 @@
 // 메인 기본 정보 컴포넌트
 import * as common from "@/styles/common.css";
+import * as mainCSS from "@/styles/main.css";
 import * as code from "@/constants/code";
 import * as icon_weather from "@/assets/images/icon_weather/index";
 import { QueryClient } from "@tanstack/react-query";
@@ -29,49 +30,86 @@ export async function getCurrentWeather() {
   const queryTime = ("00" + target.toString()).slice(-2) + "00";
 
   const test = await fetch(
-    "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=hhPRU4TihqC7sGrFL7uNTmty4I7Hng2A57yNkCPaRsb%2BbnlxyetnLDADCFy%2FDh0KshzZmRBEyFO1VEMKNHeuPg%3D%3D&numOfRows=150&pageNo=1&base_date=" +
+    "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=hhPRU4TihqC7sGrFL7uNTmty4I7Hng2A57yNkCPaRsb%2BbnlxyetnLDADCFy%2FDh0KshzZmRBEyFO1VEMKNHeuPg%3D%3D&numOfRows=152&pageNo=1&base_date=" +
       queryDate +
       "&base_time=" +
       queryTime +
       "&nx=55&ny=127&dataType=json"
   );
+
   const json = await test.json();
   const data = json.response.body;
 
   return data.items.item;
 }
 
-function setNumber(str: string): number {
-  console.log("dddddddddddd", str);
+function translateData(obj: object): object {
+  // const firstIndex = obj.findIndex((j) => j.category === "TMP");
+  // const nd = new Date();
+  // const year = nd.getFullYear();
+  // const month = nd.getMonth() + 1;
+  // const day = nd.getDate();
+  // const newDay =
+  //   ("00" + month.toString()).slice(-2) + ("00" + day.toString()).slice(-2);
+  // const queryDate = year + newDay;
+  // const qt = ("00" + nd.getHours().toString()).slice(-2) + "00";
 
+  let tempData = new Object();
+  obj.forEach((i, index) => {
+    if (i.category === "TMP") {
+      tempData[i.fcstTime] = {
+        date: i.fcstDate,
+        tmp: i.fcstValue,
+      };
+    }
+    if (i.category === "SKY") {
+      tempData[i.fcstTime]["sky"] = i.fcstValue;
+    }
+    if (i.category === "PTY") {
+      tempData[i.fcstTime]["pty"] = i.fcstValue;
+    }
+  });
+  // console.log("tteess22334455", tempData);
+
+  return tempData;
+}
+
+function setNumber(str: string): number {
   const cutNumber = str.substr(0, 2);
   return Number(cutNumber);
 }
 
 export default async function MainHourly() {
   const info = await getCurrentWeather();
-  let hour;
+  const newData = await translateData(info);
+
   return (
-    <div className={common.hourly}>
-      <div className={common.hourly__wrap}>
-        <div className={common.hourly__box}>
-          <ul className={common.hourly__list}>
-            {info.map((item, index) => {
-              if (item.fcstTime && item.category === "TMP" && index >= 30) {
-                return (
-                  <li className={common.hourly__listwrap}>
-                    <div className={common.hourly__listitem}>
-                      <div className={common.hourly__listtime}>
-                        {setNumber(item.fcstTime) + "시"}
-                      </div>
-                      <div className={common.hourly__listvalue}>
-                        {item.fcstValue}
-                      </div>
+    <div className={mainCSS.hourly}>
+      <div className={mainCSS.hourly__wrap}>
+        <div className={mainCSS.hourly__box}>
+          <ul className={mainCSS.hourly__list}>
+            {Object.keys(newData).map((key) => (
+              <li className={mainCSS.hourly__listwrap}>
+                <div className={mainCSS.hourly__listitem}>
+                  <div className={mainCSS.hourly__listtime}>
+                    {setNumber(key) + "시"}
+                  </div>
+                  <div className={mainCSS.hourly__icon}>
+                    <div
+                      className={`${mainCSS.icon__weather} ${
+                        mainCSS.icon__weather__small
+                      } ${mainCSS["icon__weather" + newData[key].sky]}`}
+                    >
+                      {newData[key].sky}
                     </div>
-                  </li>
-                );
-              }
-            })}
+                  </div>
+                  <div className={mainCSS.hourly__listvalue}>
+                    {newData[key].tmp}
+                    {code.WEATHER_UNIT["TMP"]}
+                  </div>
+                </div>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

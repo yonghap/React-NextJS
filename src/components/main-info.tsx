@@ -1,5 +1,6 @@
 // 메인 기본 정보 컴포넌트
 import * as common from "@/styles/common.css";
+import * as mainCSS from "@/styles/main.css";
 import * as code from "@/constants/code";
 import * as icon_weather from "@/assets/images/icon_weather/index";
 import { QueryClient } from "@tanstack/react-query";
@@ -43,13 +44,13 @@ export async function getCurrentWeather() {
 export default async function MainInfo() {
   const info = await getCurrentWeather();
   return (
-    <div className={common.info__wrap}>
-      <div className={common.info__icon}>
+    <div className={mainCSS.info__wrap}>
+      <div className={mainCSS.info__icon}>
         {info.map((i) => {
           return (
             i.category === "SKY" && (
               <div
-                className={`${common.icon__weather} ${common["icon__weather1"]}`}
+                className={`${mainCSS.icon__weather} ${common["icon__weather1"]}`}
               >
                 {i.fcstValue}
               </div>
@@ -57,10 +58,10 @@ export default async function MainInfo() {
           );
         })}
       </div>
-      <div className={common.info__box}>
+      <div className={mainCSS.info__box}>
         {info.map((item) => {
           return item.category === "TMP" ? (
-            <div className={common.info__temperature}>
+            <div className={mainCSS.info__temperature}>
               {item.fcstValue + code.WEATHER_UNIT[item.category]}
             </div>
           ) : (
