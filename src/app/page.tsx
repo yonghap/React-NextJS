@@ -10,6 +10,7 @@ import * as icon_weather from "@/assets/images/icon_weather/index";
 import { icon__weather1, info__temperature } from "@/styles/common.css";
 import MainInfo from "@/components/main-info";
 import MainHourly from "@/components/main-hourly";
+import MainDaily from "@/components/main-daily";
 // import icon_weather_sunny from "@/assets/images/icon_weather/sunny.png";
 
 export default async function Home() {
@@ -27,42 +28,8 @@ export default async function Home() {
         </div>
         {/*일별 날씨*/}
         <div className={common.box}>
-          <h2>일별날씨예보</h2>
-          <ul>
-            <li>2월1일</li>
-            <li>맑음</li>
-            <li>5도/11도</li>
-          </ul>
-          <ul>
-            <li>2월1일</li>
-            <li>맑음</li>
-            <li>5도/11도</li>
-          </ul>
-          <ul>
-            <li>2월1일</li>
-            <li>맑음</li>
-            <li>5도/11도</li>
-          </ul>
-          <ul>
-            <li>2월1일</li>
-            <li>맑음</li>
-            <li>5도/11도</li>
-          </ul>
-          <ul>
-            <li>2월1일</li>
-            <li>맑음</li>
-            <li>5도/11도</li>
-          </ul>
-          <ul>
-            <li>2월1일</li>
-            <li>맑음</li>
-            <li>5도/11도</li>
-          </ul>
-          <ul>
-            <li>2월1일</li>
-            <li>맑음</li>
-            <li>5도/11도</li>
-          </ul>
+          <h2 className={common.box__title}>일별날씨예보</h2>
+          <MainDaily />
         </div>
         {/*보건 지수*/}
         <div className={common.box}>

@@ -30,7 +30,7 @@ export async function getCurrentWeather() {
   const queryTime = ("00" + target.toString()).slice(-2) + "00";
 
   const test = await fetch(
-    "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=hhPRU4TihqC7sGrFL7uNTmty4I7Hng2A57yNkCPaRsb%2BbnlxyetnLDADCFy%2FDh0KshzZmRBEyFO1VEMKNHeuPg%3D%3D&numOfRows=250&pageNo=1&base_date=" +
+    "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=hhPRU4TihqC7sGrFL7uNTmty4I7Hng2A57yNkCPaRsb%2BbnlxyetnLDADCFy%2FDh0KshzZmRBEyFO1VEMKNHeuPg%3D%3D&numOfRows=199&pageNo=1&base_date=" +
       queryDate +
       "&base_time=" +
       queryTime +
@@ -39,19 +39,14 @@ export async function getCurrentWeather() {
 
   const json = await test.json();
   const data = json.response.body;
+  console.log("aaaaaaaaaaaaa", queryDate, queryTime);
   return data.items.item;
 }
 
 function translateData(obj: object): object {
   let tempData = new Object();
-  const lastIdx = obj.reduce((acc, cur, idx) => {
-    if (cur["category"] === "SKY") {
-      acc = idx;
-    }
-    return acc;
-  }, null);
   obj.forEach((i, index) => {
-    if (index >= 36 && index <= lastIdx) {
+    if (index >= 36) {
       if (i.category === "TMP") {
         tempData[i.fcstDate + "_" + i.fcstTime] = {
           date: i.fcstDate,
@@ -66,6 +61,7 @@ function translateData(obj: object): object {
       }
     }
   });
+  console.log("test888", tempData);
 
   return tempData;
 }

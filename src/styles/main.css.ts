@@ -51,8 +51,8 @@ export const icon__weather = style({
 });
 
 export const icon__weather__small = style({
-  width: "2rem",
-  height: "2rem",
+  width: "1.8rem",
+  height: "1.8rem",
 });
 
 import * as icon_weather from "@/assets/images/icon_weather";
@@ -64,5 +64,11 @@ export const icon__weather2 = style({
   backgroundImage: "url(" + icon_weather.icon_weather_cloudy.src + ")",
 });
 export const icon__weather3 = style({
+  backgroundImage: "url(" + icon_weather.icon_weather_cloudy2.src + ")",
+});
+export const icon__weather4 = style({
   backgroundImage: "url(" + icon_weather.icon_weather_cloudy.src + ")",
+});
+export const night = style({
+  backgroundImage: "url(" + icon_weather.icon_weather_sunnynight.src + ")",
 });

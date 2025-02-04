@@ -22,17 +22,17 @@ export const row__small = style({
 });
 
 export const boxs = style({
-  padding: "15px",
+  padding: "20px",
   backgroundColor: "#eee",
 });
 
 export const box = style({
-  margin: "0 15px 15px",
-  padding: "15px 15px 30px",
+  marginBottom: "15px",
+  padding: "30px 20px 30px",
   backgroundColor: "#fff",
 });
 
 export const box__title = style({
-  marginBottom: "12px",
+  marginBottom: "15px",
   fontSize: "1.2rem",
 });
