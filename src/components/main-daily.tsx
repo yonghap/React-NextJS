@@ -30,39 +30,31 @@ export async function getCurrentWeather() {
   const queryTime = ("00" + target.toString()).slice(-2) + "00";
 
   const test = await fetch(
-    "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=hhPRU4TihqC7sGrFL7uNTmty4I7Hng2A57yNkCPaRsb%2BbnlxyetnLDADCFy%2FDh0KshzZmRBEyFO1VEMKNHeuPg%3D%3D&numOfRows=199&pageNo=1&base_date=" +
-      queryDate +
-      "&base_time=" +
-      queryTime +
-      "&nx=55&ny=127&dataType=json"
+    "http://apis.data.go.kr/1360000/MidFcstInfoService/getMidTa?serviceKey=hhPRU4TihqC7sGrFL7uNTmty4I7Hng2A57yNkCPaRsb%2BbnlxyetnLDADCFy%2FDh0KshzZmRBEyFO1VEMKNHeuPg%3D%3D&numOfRows=10&pageNo=1&regId=11B10101&tmFc=202502061800&dataType=json"
   );
 
   const json = await test.json();
   const data = json.response.body;
-  console.log("aaaaaaaaaaaaa", queryDate, queryTime);
-  return data.items.item;
+  return data.items.item[0];
 }
 
 function translateData(obj: object): object {
-  let tempData = new Object();
-  obj.forEach((i, index) => {
-    if (index >= 36) {
-      if (i.category === "TMP") {
-        tempData[i.fcstDate + "_" + i.fcstTime] = {
-          date: i.fcstDate,
-          tmp: i.fcstValue,
-        };
+  let tempData = [];
+
+  for (const key in obj) {
+    if (key.length <= 7 && key !== "regId") {
+      var regex = /[^0-9]/g;
+      var result = key.replace(regex, "");
+      if (key.includes("Min")) {
+        tempData[parseInt(result) - 5] = [];
+        tempData[parseInt(result) - 5].push(obj[key]);
       }
-      if (i.category === "SKY") {
-        tempData[i.fcstDate + "_" + i.fcstTime]["sky"] = i.fcstValue;
-      }
-      if (i.category === "PTY") {
-        tempData[i.fcstDate + "_" + i.fcstTime]["pty"] = i.fcstValue;
+      if (key.includes("Max")) {
+        tempData[parseInt(result) - 5].push(obj[key]);
       }
     }
-  });
-  console.log("test888", tempData);
-
+  }
+  console.log("ttemp", tempData);
   return tempData;
 }
 
@@ -70,50 +62,23 @@ function setNumber(str: string): number {
   const cutNumber = str.substr(9, 2);
   return Number(cutNumber);
 }
-function checkNight(num: number): boolean {
-  const nightTime = [19, 20, 21, 22, 23, 24, 1, 2, 3, 4, 5, 6];
-  return nightTime.includes(num);
-}
 
 export default async function MainHourly() {
   const info = await getCurrentWeather();
   const newData = await translateData(info);
-
+  const nd = new Date();
   return (
-    <div className={mainCSS.hourly}>
-      <div className={mainCSS.hourly__wrap}>
-        <div className={mainCSS.hourly__box}>
-          <ul className={mainCSS.hourly__list}>
-            {Object.keys(newData).map((key) => (
-              <li className={mainCSS.hourly__listwrap}>
-                <div className={mainCSS.hourly__listitem}>
-                  <div className={mainCSS.hourly__listtime}>
-                    {setNumber(key) + "시"}
-                  </div>
-                  <div className={mainCSS.hourly__icon}>
-                    <div
-                      className={`${mainCSS.icon__weather} ${
-                        mainCSS.icon__weather__small
-                      } ${mainCSS["icon__weather" + newData[key].sky]} ${
-                        mainCSS[
-                          checkNight(setNumber(key)) && newData[key].sky === "1"
-                            ? "night"
-                            : ""
-                        ]
-                      } `}
-                    >
-                      {newData[key].sky}
-                    </div>
-                  </div>
-                  <div className={mainCSS.hourly__listvalue}>
-                    {newData[key].tmp}
-                    {code.WEATHER_UNIT["TMP"]}
-                  </div>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
+    <div className={mainCSS.daily}>
+      <div className={mainCSS.daily__wrap}>
+        {newData.map((i, index) => {
+          return (
+            <div>
+              {nd.getDate() + index + 5}일{i[0]}
+              {code.WEATHER_UNIT["TMP"]} / {i[1]}
+              {code.WEATHER_UNIT["TMP"]}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
