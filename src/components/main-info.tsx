@@ -50,7 +50,7 @@ export default async function MainInfo() {
           return (
             i.category === "SKY" && (
               <div
-                className={`${mainCSS.icon__weather} ${common["icon__weather1"]}`}
+                className={`${mainCSS.icon__weather} ${mainCSS["icon__weather1"]}`}
               >
                 {i.fcstValue}
               </div>

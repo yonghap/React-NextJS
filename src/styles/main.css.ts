@@ -42,6 +42,23 @@ export const hourly__icon = style({
   margin: "5px 0",
 });
 
+export const daily__listwrap = style({
+  display: "flex",
+  justifyContent: "space-between",
+  margin: "5px 0",
+  fontSize: ".8rem",
+  color: "#666",
+});
+export const daily__listday = style({
+  flexBasis: "60px",
+  color: "#333",
+  fontWeight: "bold",
+});
+export const daily__listtemp = style({
+  flexBasis: "70px",
+  textAlign: "right",
+});
+
 export const icon__weather = style({
   display: "inline-block",
   width: "6.4rem",
@@ -60,6 +77,9 @@ import * as icon_weather from "@/assets/images/icon_weather";
 export const icon__weather1 = style({
   backgroundImage: "url(" + icon_weather.icon_weather_sunny.src + ")",
 });
+export const night = style({
+  backgroundImage: "url(" + icon_weather.icon_weather_sunnynight.src + ")",
+});
 export const icon__weather2 = style({
   backgroundImage: "url(" + icon_weather.icon_weather_cloudy.src + ")",
 });
@@ -69,6 +89,15 @@ export const icon__weather3 = style({
 export const icon__weather4 = style({
   backgroundImage: "url(" + icon_weather.icon_weather_cloudy.src + ")",
 });
-export const night = style({
-  backgroundImage: "url(" + icon_weather.icon_weather_sunnynight.src + ")",
+export const icon__weather5 = style({
+  backgroundImage: "url(" + icon_weather.icon_weather_cloudyrainy.src + ")",
+});
+export const icon__weather6 = style({
+  backgroundImage: "url(" + icon_weather.icon_weather_rainy.src + ")",
+});
+export const icon__weather7 = style({
+  backgroundImage: "url(" + icon_weather.icon_weather_rainy2.src + ")",
+});
+export const icon__weather8 = style({
+  backgroundImage: "url(" + icon_weather.icon_weather_snow.src + ")",
 });
