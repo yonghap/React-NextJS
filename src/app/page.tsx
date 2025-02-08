@@ -11,6 +11,7 @@ import { icon__weather1, info__temperature } from "@/styles/common.css";
 import MainInfo from "@/components/main-info";
 import MainHourly from "@/components/main-hourly";
 import MainDaily from "@/components/main-daily";
+import MainAir from "@/components/main-air";
 // import icon_weather_sunny from "@/assets/images/icon_weather/sunny.png";
 
 export default async function Home() {
@@ -33,8 +34,8 @@ export default async function Home() {
         </div>
         {/*보건 지수*/}
         <div className={common.box}>
-          <h2>미세먼지</h2>
-          <div>매우 나쁨</div>
+          <h2 className={common.box__title}>미세먼지</h2>
+          <MainAir />
         </div>
       </div>
     </div>
