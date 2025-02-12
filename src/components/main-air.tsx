@@ -7,7 +7,8 @@ import { QueryClient } from "@tanstack/react-query";
 
 export async function getCurrentWeather() {
   var date = new Date();
-  var yesterday = new Date(date.setDate(date.getDate() - 1));
+  // var yesterday = new Date(date.setDate(date.getDate() - 1));
+  var yesterday = new Date(date.setDate(date.getDate()));
   var year = yesterday.getFullYear();
   var month = ("0" + (1 + yesterday.getMonth())).slice(-2);
   var day = ("0" + yesterday.getDate()).slice(-2);
@@ -15,7 +16,7 @@ export async function getCurrentWeather() {
   var newD = year + "-" + month + "-" + day;
   console.log(newD, "newD");
   const test = await fetch(
-    "https://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getMinuDustFrcstDspth?serviceKey=hhPRU4TihqC7sGrFL7uNTmty4I7Hng2A57yNkCPaRsb%2BbnlxyetnLDADCFy%2FDh0KshzZmRBEyFO1VEMKNHeuPg%3D%3D&returnType=json&numOfRows=5&pageNo=1&searchDate=" +
+    "https://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getMinuDustFrcstDspth?serviceKey=hhPRU4TihqC7sGrFL7uNTmty4I7Hng2A57yNkCPaRsb%2BbnlxyetnLDADCFy%2FDh0KshzZmRBEyFO1VEMKNHeuPg%3D%3D&returnType=json&numOfRows=4&pageNo=1&searchDate=" +
       newD +
       "&InformCode=PM10"
   );
@@ -32,12 +33,17 @@ function translateData(obj: object): object {
 }
 
 function setNumber(str: string): number {
-  const cutNumber = str.substr(9, 2);
+  const cutNumber = str.substr(8, 2);
   return Number(cutNumber);
 }
 function checkNight(num: number): boolean {
   const nightTime = [19, 20, 21, 22, 23, 24, 1, 2, 3, 4, 5, 6];
   return nightTime.includes(num);
+}
+function setAir(info: string): string {
+  const airList = info.split(",");
+  const airStats = airList[0].split(":");
+  return airStats[1];
 }
 
 export default async function MainHourly() {
@@ -52,7 +58,11 @@ export default async function MainHourly() {
           <ul className={mainCSS.air__list}>
             {info.map((i) => (
               <li className={mainCSS.air__listwrap}>
-                <div className={mainCSS.hourly__listitem}>{i.informGrade}</div>
+                <div>{i.informData}</div>
+                <div>{setNumber(i.informData)}</div>
+                <div className={mainCSS.hourly__listitem}>
+                  {setAir(i.informGrade)}
+                </div>
               </li>
             ))}
           </ul>
