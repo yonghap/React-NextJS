@@ -14,9 +14,8 @@ export async function getCurrentWeather() {
   var day = ("0" + yesterday.getDate()).slice(-2);
 
   var newD = year + "-" + month + "-" + day;
-  console.log(newD, "newD");
   const test = await fetch(
-    "https://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getMinuDustFrcstDspth?serviceKey=hhPRU4TihqC7sGrFL7uNTmty4I7Hng2A57yNkCPaRsb%2BbnlxyetnLDADCFy%2FDh0KshzZmRBEyFO1VEMKNHeuPg%3D%3D&returnType=json&numOfRows=4&pageNo=1&searchDate=" +
+    "https://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getMinuDustFrcstDspth?serviceKey=hhPRU4TihqC7sGrFL7uNTmty4I7Hng2A57yNkCPaRsb%2BbnlxyetnLDADCFy%2FDh0KshzZmRBEyFO1VEMKNHeuPg%3D%3D&returnType=json&numOfRows=5&pageNo=1&searchDate=" +
       newD +
       "&InformCode=PM10"
   );
@@ -53,14 +52,15 @@ export default async function MainHourly() {
 
   return (
     <div className={mainCSS.air}>
-      <div className={mainCSS.airy__wrap}>
+      <div className={mainCSS.air__wrap}>
         <div className={mainCSS.air__box}>
           <ul className={mainCSS.air__list}>
             {info.map((i) => (
               <li className={mainCSS.air__listwrap}>
-                <div>{i.informData}</div>
-                <div>{setNumber(i.informData)}</div>
-                <div className={mainCSS.hourly__listitem}>
+                <div className={mainCSS.air__listdate}>
+                  {setNumber(i.informData) + "일"}
+                </div>
+                <div className={mainCSS.air__listitem}>
                   {setAir(i.informGrade)}
                 </div>
               </li>

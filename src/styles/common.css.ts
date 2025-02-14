@@ -6,6 +6,7 @@ export const wrap = style({
   margin: "0 auto",
   borderLeft: "1px solid #ddd",
   borderRight: "1px solid #ddd",
+  backgroundColor: "#eee",
 });
 
 export const row = style({
@@ -18,12 +19,10 @@ export const row__small = style({
   padding: "30px 20px",
   border: "1px solid #666",
   borderRadius: "10px",
-  background: "rgba(37,45,53,0.9)",
 });
 
 export const boxs = style({
   padding: "20px",
-  backgroundColor: "#eee",
 });
 
 export const box = style({

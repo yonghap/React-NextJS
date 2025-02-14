@@ -8,6 +8,7 @@ import * as common from "@/styles/common.css";
 import * as code from "@/constants/code";
 import * as icon_weather from "@/assets/images/icon_weather/index";
 import { icon__weather1, info__temperature } from "@/styles/common.css";
+import Header from "@/components/navigation";
 import MainInfo from "@/components/main-info";
 import MainHourly from "@/components/main-hourly";
 import MainDaily from "@/components/main-daily";
@@ -17,6 +18,7 @@ import MainAir from "@/components/main-air";
 export default async function Home() {
   return (
     <div>
+      <Header />
       <div className={common.boxs}>
         {/*기본 날씨 정보*/}
         <div className={common.box}>

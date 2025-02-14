@@ -42,6 +42,26 @@ export const hourly__icon = style({
   margin: "5px 0",
 });
 
+export const air__list = style({
+  display: "flex",
+  justifyContent: "space-between",
+  textAlign: "center",
+});
+export const air__listwrap = style({
+  fontSize: ".8rem",
+});
+export const air__listdate = style({
+  color: "#666",
+});
+
+export const air__listitem = style({
+  fontWeight: "bold",
+});
+
+export const air__icon = style({
+  margin: "5px 0",
+});
+
 export const daily__listwrap = style({
   display: "flex",
   justifyContent: "space-between",
@@ -56,6 +76,7 @@ export const daily__listday = style({
 });
 export const daily__listtemp = style({
   flexBasis: "70px",
+  fontWeight: "700",
   textAlign: "right",
 });
 
