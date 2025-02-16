@@ -9,6 +9,7 @@ import * as code from "@/constants/code";
 import * as icon_weather from "@/assets/images/icon_weather/index";
 import { icon__weather1, info__temperature } from "@/styles/common.css";
 import Header from "@/components/navigation";
+import Footer from "@/components/footer";
 import MainInfo from "@/components/main-info";
 import MainHourly from "@/components/main-hourly";
 import MainDaily from "@/components/main-daily";
@@ -39,6 +40,7 @@ export default async function Home() {
           <h2 className={common.box__title}>미세먼지</h2>
           <MainAir />
         </div>
+        <Footer />
       </div>
     </div>
   );

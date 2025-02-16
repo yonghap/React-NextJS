@@ -21,7 +21,7 @@ export const info__temperature = style({
 export const info__icon = style({
   marginLeft: "6px",
 });
-
+// 시간대별 날씨
 export const hourly__list = style({
   display: "flex",
   flexWrap: "nowrap",

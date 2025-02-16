@@ -21,7 +21,7 @@ export default function RootLayout({
     <html lang="ko">
       <body>
         <div className={common.wrap}>
-          <div className={common.container}>
+          <div>
             <TanstackProvider>{children}</TanstackProvider>
           </div>
         </div>

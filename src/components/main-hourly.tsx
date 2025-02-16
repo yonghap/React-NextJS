@@ -84,13 +84,16 @@ export default async function MainHourly() {
   const newData = await translateData(info);
 
   return (
-    <div className={mainCSS.hourly}>
-      <div className={mainCSS.hourly__wrap}>
-        <div className={mainCSS.hourly__box}>
+    <div>
+      <div>
+        <div>
           <ul className={mainCSS.hourly__list}>
             {Object.keys(newData).map((key) => (
-              <li className={mainCSS.hourly__listwrap}>
-                <div className={mainCSS.hourly__listitem}>
+              <li
+                key={newData[key].category}
+                className={mainCSS.hourly__listwrap}
+              >
+                <div>
                   <div className={mainCSS.hourly__listtime}>
                     {setNumber(key) + "시"}
                   </div>
@@ -109,7 +112,7 @@ export default async function MainHourly() {
                       {newData[key].sky}
                     </div>
                   </div>
-                  <div className={mainCSS.hourly__listvalue}>
+                  <div>
                     {newData[key].tmp}
                     {code.WEATHER_UNIT["TMP"]}
                   </div>

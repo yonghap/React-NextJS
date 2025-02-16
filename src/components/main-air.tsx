@@ -7,8 +7,8 @@ import { QueryClient } from "@tanstack/react-query";
 
 export async function getCurrentWeather() {
   var date = new Date();
-  // var yesterday = new Date(date.setDate(date.getDate() - 1));
-  var yesterday = new Date(date.setDate(date.getDate()));
+  var yesterday = new Date(date.setDate(date.getDate() - 1));
+  // var yesterday = new Date(date.setDate(date.getDate()));
   var year = yesterday.getFullYear();
   var month = ("0" + (1 + yesterday.getMonth())).slice(-2);
   var day = ("0" + yesterday.getDate()).slice(-2);
@@ -51,12 +51,12 @@ export default async function MainHourly() {
   const newData = await translateData(info);
 
   return (
-    <div className={mainCSS.air}>
-      <div className={mainCSS.air__wrap}>
-        <div className={mainCSS.air__box}>
+    <div>
+      <div>
+        <div>
           <ul className={mainCSS.air__list}>
-            {info.map((i) => (
-              <li className={mainCSS.air__listwrap}>
+            {info.map((i, index) => (
+              <li key={i.informData} className={mainCSS.air__listwrap}>
                 <div className={mainCSS.air__listdate}>
                   {setNumber(i.informData) + "일"}
                 </div>
