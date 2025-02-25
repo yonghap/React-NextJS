@@ -1,4 +1,4 @@
-// 메인 기본 정보 컴포넌트
+// 메인 일별 날짜 예보
 import * as common from "@/styles/common.css";
 import * as mainCSS from "@/styles/main.css";
 import * as code from "@/constants/code";
@@ -7,7 +7,6 @@ import { QueryClient } from "@tanstack/react-query";
 import { daily__listwrap } from "@/styles/main.css";
 
 export async function getCurrentWeather() {
-  // 오늘 날짜 구하기 0000
   let targetDate = new Date();
   const forecastTime = [2, 5, 8, 11, 14, 17, 20, 23];
   const currentHours = targetDate.getHours(); // 14
@@ -29,9 +28,8 @@ export async function getCurrentWeather() {
     ("00" + month.toString()).slice(-2) + ("00" + day.toString()).slice(-2);
   const queryDate = year + newDay;
   const queryTime = ("00" + target.toString()).slice(-2) + "00";
-
   const test = await fetch(
-    "http://apis.data.go.kr/1360000/MidFcstInfoService/getMidTa?serviceKey=hhPRU4TihqC7sGrFL7uNTmty4I7Hng2A57yNkCPaRsb%2BbnlxyetnLDADCFy%2FDh0KshzZmRBEyFO1VEMKNHeuPg%3D%3D&numOfRows=10&pageNo=1&regId=11B10101&tmFc=202502201800&dataType=json"
+    "http://apis.data.go.kr/1360000/MidFcstInfoService/getMidTa?serviceKey=hhPRU4TihqC7sGrFL7uNTmty4I7Hng2A57yNkCPaRsb%2BbnlxyetnLDADCFy%2FDh0KshzZmRBEyFO1VEMKNHeuPg%3D%3D&numOfRows=10&pageNo=1&regId=11B10101&tmFc=202502251800&dataType=json"
   );
 
   const json = await test.json();
@@ -40,7 +38,7 @@ export async function getCurrentWeather() {
 }
 async function getDailyWeather() {
   const test = await fetch(
-    "http://apis.data.go.kr/1360000/MidFcstInfoService/getMidLandFcst?serviceKey=hhPRU4TihqC7sGrFL7uNTmty4I7Hng2A57yNkCPaRsb%2BbnlxyetnLDADCFy%2FDh0KshzZmRBEyFO1VEMKNHeuPg%3D%3D&numOfRows=10&pageNo=1&regId=11B00000&tmFc=202502201800&dataType=json"
+    "http://apis.data.go.kr/1360000/MidFcstInfoService/getMidLandFcst?serviceKey=hhPRU4TihqC7sGrFL7uNTmty4I7Hng2A57yNkCPaRsb%2BbnlxyetnLDADCFy%2FDh0KshzZmRBEyFO1VEMKNHeuPg%3D%3D&numOfRows=10&pageNo=1&regId=11B00000&tmFc=202502251800&dataType=json"
   );
 
   const json = await test.json();

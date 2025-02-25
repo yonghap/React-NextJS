@@ -4,6 +4,7 @@ import * as mainCSS from "@/styles/main.css";
 import * as code from "@/constants/code";
 import * as icon_weather from "@/assets/images/icon_weather/index";
 import { QueryClient } from "@tanstack/react-query";
+import { getToday, getShortRangDate } from "@/utils/date";
 
 export async function getCurrentWeather() {
   // 오늘 날짜 구하기 0000
@@ -36,7 +37,7 @@ export async function getCurrentWeather() {
       queryTime +
       "&nx=55&ny=127&dataType=json"
   );
-
+  console.log("ddddd", getShortRangDate());
   const json = await test.json();
   const data = json.response.body;
   return data.items.item;
