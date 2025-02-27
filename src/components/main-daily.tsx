@@ -5,31 +5,14 @@ import * as code from "@/constants/code";
 import * as icon_weather from "@/assets/images/icon_weather/index";
 import { QueryClient } from "@tanstack/react-query";
 import { daily__listwrap } from "@/styles/main.css";
+import { getLongRangeDate } from "@/utils/date";
 
 export async function getCurrentWeather() {
-  let targetDate = new Date();
-  const forecastTime = [2, 5, 8, 11, 14, 17, 20, 23];
-  const currentHours = targetDate.getHours(); // 14
-  let target = 0;
-  for (var i = 0; i < forecastTime.length; i++) {
-    if (currentHours <= 2) {
-      targetDate = new Date(targetDate.setDate(targetDate.getDate() - 1));
-      target = 23;
-      break;
-    } else if (currentHours <= forecastTime[i]) {
-      target = forecastTime[i - 1];
-      break;
-    }
-  }
-  const year = targetDate.getFullYear();
-  const month = targetDate.getMonth() + 1;
-  const day = targetDate.getDate();
-  const newDay =
-    ("00" + month.toString()).slice(-2) + ("00" + day.toString()).slice(-2);
-  const queryDate = year + newDay;
-  const queryTime = ("00" + target.toString()).slice(-2) + "00";
+  const queryData = getLongRangeDate();
   const test = await fetch(
-    "http://apis.data.go.kr/1360000/MidFcstInfoService/getMidTa?serviceKey=hhPRU4TihqC7sGrFL7uNTmty4I7Hng2A57yNkCPaRsb%2BbnlxyetnLDADCFy%2FDh0KshzZmRBEyFO1VEMKNHeuPg%3D%3D&numOfRows=10&pageNo=1&regId=11B10101&tmFc=202502271800&dataType=json"
+    "http://apis.data.go.kr/1360000/MidFcstInfoService/getMidTa?serviceKey=hhPRU4TihqC7sGrFL7uNTmty4I7Hng2A57yNkCPaRsb%2BbnlxyetnLDADCFy%2FDh0KshzZmRBEyFO1VEMKNHeuPg%3D%3D&numOfRows=10&pageNo=1&regId=11B10101&tmFc=" +
+      queryData +
+      "&dataType=json"
   );
 
   const json = await test.json();
@@ -37,8 +20,11 @@ export async function getCurrentWeather() {
   return data.items.item[0];
 }
 async function getDailyWeather() {
+  const queryData = getLongRangeDate();
   const test = await fetch(
-    "http://apis.data.go.kr/1360000/MidFcstInfoService/getMidLandFcst?serviceKey=hhPRU4TihqC7sGrFL7uNTmty4I7Hng2A57yNkCPaRsb%2BbnlxyetnLDADCFy%2FDh0KshzZmRBEyFO1VEMKNHeuPg%3D%3D&numOfRows=10&pageNo=1&regId=11B00000&tmFc=202502271800&dataType=json"
+    "http://apis.data.go.kr/1360000/MidFcstInfoService/getMidLandFcst?serviceKey=hhPRU4TihqC7sGrFL7uNTmty4I7Hng2A57yNkCPaRsb%2BbnlxyetnLDADCFy%2FDh0KshzZmRBEyFO1VEMKNHeuPg%3D%3D&numOfRows=10&pageNo=1&regId=11B00000&tmFc=" +
+      queryData +
+      "&dataType=json"
   );
 
   const json = await test.json();
@@ -95,7 +81,7 @@ export default async function MainHourly() {
           <ul>
             {newData.map((i, index) => {
               return (
-                <li key={i[0]} className={mainCSS.daily__listwrap}>
+                <li key={index} className={mainCSS.daily__listwrap}>
                   <span className={mainCSS.daily__listday}>
                     {nd.getDate() + index + 5}일
                   </span>

@@ -56,7 +56,7 @@ export default async function MainHourly() {
         <div>
           <ul className={mainCSS.air__list}>
             {info.map((i, index) => (
-              <li key={i.informData} className={mainCSS.air__listwrap}>
+              <li key={i.informData + index} className={mainCSS.air__listwrap}>
                 <div className={mainCSS.air__listdate}>
                   {setNumber(i.informData) + "일"}
                 </div>

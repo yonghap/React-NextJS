@@ -1,23 +1,19 @@
 // 메인 기본 정보 컴포넌트
-import * as common from "@/styles/common.css";
 import * as mainCSS from "@/styles/main.css";
 import * as code from "@/constants/code";
-import * as icon_weather from "@/assets/images/icon_weather/index";
-import { QueryClient } from "@tanstack/react-query";
 import { getShortRangeDate } from "@/utils/date";
 
 export async function getCurrentWeather() {
-  const queryData = getShortRangeDate();
-  const test = await fetch(
+  const queryDate = getShortRangeDate();
+  const result = await fetch(
     "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=hhPRU4TihqC7sGrFL7uNTmty4I7Hng2A57yNkCPaRsb%2BbnlxyetnLDADCFy%2FDh0KshzZmRBEyFO1VEMKNHeuPg%3D%3D&numOfRows=250&pageNo=1&base_date=" +
-      queryData[0] +
+      queryDate[0] +
       "&base_time=" +
-      queryData[1] +
+      queryDate[1] +
       "&nx=55&ny=127&dataType=json"
   );
-  const json = await test.json();
-  const data = json.response.body;
-  return data.items.item;
+  const json = await result.json();
+  return json.response.body.items.item;
 }
 
 function translateData(obj: object): object {
@@ -59,18 +55,15 @@ function checkNight(num: number): boolean {
 
 export default async function MainHourly() {
   const info = await getCurrentWeather();
-  const newData = await translateData(info);
+  const weatherData = await translateData(info);
 
   return (
     <div>
       <div>
         <div>
           <ul className={mainCSS.hourly__list}>
-            {Object.keys(newData).map((key) => (
-              <li
-                key={newData[key].category}
-                className={mainCSS.hourly__listwrap}
-              >
+            {Object.keys(weatherData).map((key, index) => (
+              <li key={index} className={mainCSS.hourly__listwrap}>
                 <div>
                   <div className={mainCSS.hourly__listtime}>
                     {setNumber(key) + "시"}
@@ -79,19 +72,20 @@ export default async function MainHourly() {
                     <div
                       className={`${mainCSS.icon__weather} ${
                         mainCSS.icon__weather__small
-                      } ${mainCSS["icon__weather" + newData[key].sky]} ${
+                      } ${mainCSS["icon__weather" + weatherData[key].sky]} ${
                         mainCSS[
-                          checkNight(setNumber(key)) && newData[key].sky === "1"
+                          checkNight(setNumber(key)) &&
+                          weatherData[key].sky === "1"
                             ? "night"
                             : ""
                         ]
                       } `}
                     >
-                      {newData[key].sky}
+                      {weatherData[key].sky}
                     </div>
                   </div>
                   <div>
-                    {newData[key].tmp}
+                    {weatherData[key].tmp}
                     {code.WEATHER_UNIT["TMP"]}
                   </div>
                 </div>
