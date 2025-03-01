@@ -61,7 +61,8 @@ export const getShortRangeDate = (): Array<string> => {
 // 중기 예보 시간 날짜/시간 구하기
 export const getLongRangeDate = (): string => {
   const today = new Date();
-  const yesterDayDate = new Date(today.setDate(today.getDate() - 1));
+  const yesterDayDate = new Date();
+  yesterDayDate.setDate(today.getDate() - 1);
   const currentHours = today.getHours();
   const currentMinutes = today.getMinutes();
   const currentTime =
@@ -87,7 +88,7 @@ export const getLongRangeDate = (): string => {
       return (
         today.getFullYear() +
         ("0" + (1 + today.getMonth())).slice(-2) +
-        addZeroTime(today.getDate()) +
+        addZeroDate(today.getDate()) +
         "1800"
       );
       break;
