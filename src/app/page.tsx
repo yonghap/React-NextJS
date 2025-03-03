@@ -27,12 +27,12 @@ export default async function Home() {
         </div>
         {/*시간대별 날씨*/}
         <div className={common.box}>
-          <h2 className={common.box__title}>시간대별 날씨</h2>
+          <h2 className={common.box__title}>시간별 날씨</h2>
           <MainHourly />
         </div>
         {/*일별 날씨*/}
         <div className={common.box}>
-          <h2 className={common.box__title}>일별날씨예보</h2>
+          <h2 className={common.box__title}>주간예보</h2>
           <MainDaily />
         </div>
         {/*보건 지수*/}
