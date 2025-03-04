@@ -18,6 +18,21 @@ const addZeroTime = (num: number): string => {
   return ("00" + num.toString()).slice(-2) + "00";
 };
 
+// 초단기 예보 시간 날짜/시간 구하기
+export const getShortestRangeDate = (): Array<string> => {
+  // 현재 시간에서 -30분
+  const today = new Date();
+  const foreCastTime = new Date(today.setMinutes(today.getMinutes() - 30));
+  const currentHours = foreCastTime.getHours();
+  const currentMinutes = foreCastTime.getMinutes();
+  return [
+    foreCastTime.getFullYear() +
+      ("0" + (1 + foreCastTime.getMonth())).slice(-2) +
+      ("0" + foreCastTime.getDate()).slice(-2),
+    addZeroDate(currentHours) + addZeroDate(currentMinutes),
+  ];
+};
+
 // 단기 예보 시간 날짜/시간 구하기
 export const getShortRangeDate = (): Array<string> => {
   const today = new Date();
@@ -29,11 +44,10 @@ export const getShortRangeDate = (): Array<string> => {
   const isYesterDay = currentHours <= 1;
 
   if (isYesterDay) {
-    console.log("qaqaqa3");
     return [
       yesterDayDate.getFullYear() +
         ("0" + (1 + yesterDayDate.getMonth())).slice(-2) +
-        addZeroTime(yesterDayDate.getDate()),
+        addZeroDate(yesterDayDate.getDate()),
       "2300",
     ];
   } else {

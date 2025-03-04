@@ -9,7 +9,6 @@ import { getLongRangeDate } from "@/utils/date";
 
 export async function getCurrentWeather() {
   const queryData = getLongRangeDate();
-  console.log("aaacc", queryData);
   const test = await fetch(
     "http://apis.data.go.kr/1360000/MidFcstInfoService/getMidTa?serviceKey=hhPRU4TihqC7sGrFL7uNTmty4I7Hng2A57yNkCPaRsb%2BbnlxyetnLDADCFy%2FDh0KshzZmRBEyFO1VEMKNHeuPg%3D%3D&numOfRows=10&pageNo=1&regId=11B10101&tmFc=" +
       queryData +
