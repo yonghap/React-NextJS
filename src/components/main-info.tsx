@@ -8,32 +8,28 @@ import { getShortestRangeDate, getShortRangeDate } from "@/utils/date";
 
 export async function getCurrentWeather() {
   const queryDate = getShortestRangeDate();
+  // const result = await fetch(
+  //   "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtFcst?serviceKey=hhPRU4TihqC7sGrFL7uNTmty4I7Hng2A57yNkCPaRsb%2BbnlxyetnLDADCFy%2FDh0KshzZmRBEyFO1VEMKNHeuPg%3D%3D&numOfRows=10&pageNo=1&base_date=" +
+  //     queryDate[0] +
+  //     "&base_time=" +
+  //     queryDate[1] +
+  //     "&nx=55&ny=127&dataType=json"
+  // );
   const result = await fetch(
-    "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtFcst?serviceKey=hhPRU4TihqC7sGrFL7uNTmty4I7Hng2A57yNkCPaRsb%2BbnlxyetnLDADCFy%2FDh0KshzZmRBEyFO1VEMKNHeuPg%3D%3D&numOfRows=10&pageNo=1&base_date=" +
-      queryDate[0] +
-      "&base_time=" +
-      queryDate[1] +
-      "&nx=55&ny=127&dataType=json"
+    "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtFcst?serviceKey=hhPRU4TihqC7sGrFL7uNTmty4I7Hng2A57yNkCPaRsb%2BbnlxyetnLDADCFy%2FDh0KshzZmRBEyFO1VEMKNHeuPg%3D%3D&numOfRows=10&pageNo=1&base_date=20250306&base_time=0200&nx=55&ny=127&dataType=json"
   );
   const json = await result.json();
   return json.response.body.items.item;
 }
 
 export default async function MainInfo() {
-  const info = await getShortestRangeDate();
+  const info = await getCurrentWeather();
+  console.log("infos4", info);
   return (
     <div className={mainCSS.info__wrap}>
       <div className={mainCSS.info__icon}>
         {info.map((i) => {
-          return (
-            i.category === "SKY" && (
-              <div
-                className={`${mainCSS.icon__weather} ${mainCSS["icon__weather1"]}`}
-              >
-                {i.fcstValue}
-              </div>
-            )
-          );
+          return <div>{i.category}</div>;
         })}
       </div>
       <div className={mainCSS.info__box}>
