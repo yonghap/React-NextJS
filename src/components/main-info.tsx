@@ -24,7 +24,6 @@ export async function getCurrentWeather() {
 
 export default async function MainInfo() {
   const info = await getCurrentWeather();
-  console.log("infos4", info);
   return (
     <div className={mainCSS.info__wrap}>
       <div className={mainCSS.info__icon}>
