@@ -1,9 +1,10 @@
 // 메인 기본 정보 컴포넌트
+'use client';
+
 import * as common from "@/styles/common.css";
 import * as mainCSS from "@/styles/main.css";
 import * as code from "@/constants/code";
-import * as icon_weather from "@/assets/images/icon_weather/index";
-import { QueryClient } from "@tanstack/react-query";
+
 import { getShortestRangeDate } from "@/utils/date";
 import { setCurrentWeather } from "@/utils/weather";
 
@@ -23,17 +24,15 @@ export async function getCurrentWeather() {
 export default async function MainInfo() {
   const info = await getCurrentWeather();
 	const weatherData = setCurrentWeather(info);
-	console.log('www233444',weatherData);
+
   return (
     <div className={mainCSS.info__wrap}>
       <div className={mainCSS.info__icon}>
-
         <div
-          className={`${mainCSS.icon__weather} ${mainCSS["icon__weather" + weatherData['SKY']]}`}
+          className={`${mainCSS.icon__weather} ${mainCSS.icon__weather__large} ${mainCSS["icon__weather__" + weatherData['SKY']]}`}
         >
-	        {weatherData['SKY']}
+	        {code.SKY_CODE[weatherData['SKY']]}
         </div>
-
       </div>
       <div className={mainCSS.info__box}>
 	      <div className={mainCSS.info__temperature}>

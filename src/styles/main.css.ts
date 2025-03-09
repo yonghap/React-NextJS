@@ -77,45 +77,55 @@ export const daily__listtemp = style({
   textAlign: "right",
 });
 
+import { sp_weather } from "@/assets/images/index";
+
 export const icon__weather = style({
-  display: "inline-block",
-  width: "6.4rem",
-  height: "6.4rem",
-  backgroundSize: "cover",
-  textIndent: "-9999px",
+	display: "inline-block",
+	backgroundImage: "url(" + sp_weather.src + ")",
+	textIndent:'-9999px'
 });
-
+export const icon__weather__large = style({
+	width:'140px',
+	height:'140px',
+	backgroundSize:"980px 840px"
+});
+// 맑음
+export const icon__weather__1 = style({
+	backgroundPosition:"0 0"
+});
+// 구름많음
+export const icon__weather__2 = style({
+	backgroundPosition:"-840px -140px"
+});
+// 흐림
+export const icon__weather__3 = style({
+	backgroundPosition:"-840px -420px"
+});
+// 비
+export const icon__weather__4 = style({
+	backgroundPosition:"-140px 0"
+});
+// 비/눈
+export const icon__weather__5 = style({
+	backgroundPosition:"-560px 0"
+});
+// 눈
+export const icon__weather__6 = style({
+	backgroundPosition:"-280px 0"
+});
+// 빗방울
+export const icon__weather__7 = style({
+	backgroundPosition:"-840px -560px"
+});
+//빗방울/눈날림
+export const icon__weather__8 = style({
+	backgroundPosition:"-140px -420px"
+});
+// 눈날림
+export const icon__weather__9 = style({
+	backgroundPosition:"0 -140px"
+});
 export const icon__weather__small = style({
-  width: "1.8rem",
-  height: "1.8rem",
-});
-
-import * as icon_weather from "@/assets/images/icon_weather";
-
-export const icon__weather1 = style({
-  backgroundImage: "url(" + icon_weather.icon_weather_sunny.src + ")",
-});
-export const night = style({
-  backgroundImage: "url(" + icon_weather.icon_weather_sunnynight.src + ")",
-});
-export const icon__weather2 = style({
-  backgroundImage: "url(" + icon_weather.icon_weather_cloudy.src + ")",
-});
-export const icon__weather3 = style({
-  backgroundImage: "url(" + icon_weather.icon_weather_cloudy2.src + ")",
-});
-export const icon__weather4 = style({
-  backgroundImage: "url(" + icon_weather.icon_weather_cloudy.src + ")",
-});
-export const icon__weather5 = style({
-  backgroundImage: "url(" + icon_weather.icon_weather_cloudyrainy.src + ")",
-});
-export const icon__weather6 = style({
-  backgroundImage: "url(" + icon_weather.icon_weather_rainy.src + ")",
-});
-export const icon__weather7 = style({
-  backgroundImage: "url(" + icon_weather.icon_weather_rainy2.src + ")",
-});
-export const icon__weather8 = style({
-  backgroundImage: "url(" + icon_weather.icon_weather_snow.src + ")",
+	width: "1.8rem",
+	height: "1.8rem",
 });
