@@ -35,3 +35,9 @@ export const box__title = style({
   marginBottom: "15px",
   fontSize: "1.2rem",
 });
+
+export const unit = style({
+	fontSize:"0.6em",
+	fontWeight:"normal",
+	verticalAlign:"top"
+})

@@ -11,9 +11,19 @@ export const WEATHER_UNIT = {
 };
 
 export const SKY_CODE = {
-  1: "맑음",
-  2: "구름많음",
-  3: "흐림",
+  '1': "맑음",
+  '2': "구름많음",
+  '3': "흐림",
+};
+
+export const PTY_CODE = {
+	'0': '없음',
+	'1': '비',
+	'2': '비/눈',
+	'3': '눈',
+	'5': '빗방울',
+	'6': '빗방울/눈날림',
+	'7': '눈날림'
 };
 
 export const SKY_STATUS = {
@@ -28,10 +38,4 @@ export const SKY_STATUS = {
   "흐리고 눈": 8,
   "흐리고 비/눈": 7,
   "흐리고 소나기": 6,
-};
-
-export const PTY_CODE = {
-  1: "비",
-  2: "비/눈",
-  3: "눈",
 };
