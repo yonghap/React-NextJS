@@ -10,9 +10,7 @@ export const setCurrentWeather = (data : Array<object>) : object => {
 	const t1h = data.find(i => i.category === 'T1H');
 	const sky = data.find(i => i.category === 'SKY');
 	// const pty = data.find(i => i.category === 'PTY');
-	const pty = {
-		fcstValue : '0'
-	}
+	const pty = {'fcstValue' : '3'}
 	if (pty.fcstValue === '0') {
 		return {
 			'T1H' : t1h.fcstValue,
@@ -24,4 +22,30 @@ export const setCurrentWeather = (data : Array<object>) : object => {
 			'SKY' : setPtyValue(pty.fcstValue)
 		}
 	}
+}
+
+export const setHourlyWeather = (data: Array<string>) : object => {
+	let returnData = new Object();
+	const lastIndex = data.reduce((acc, cur, idx) => {
+		if (cur["category"] === "SKY") {
+			acc = idx;
+		}
+		return acc;
+	}, null);
+
+	for(let i = 36;i <= lastIndex; i++) {
+		if (data[i].category === "TMP") {
+			returnData[data[i].fcstDate + "_" + data[i].fcstTime] = {
+				DATE: data[i].fcstDate,
+				TMP: data[i].fcstValue,
+			};
+		}
+		if (data[i].category === "SKY") {
+			returnData[data[i].fcstDate + "_" + data[i].fcstTime]["SKY"] = data[i].fcstValue;
+		}
+		if (data[i].category === "PTY" && data[i].fcstValue !== '0') {
+			returnData[data[i].fcstDate + "_" + data[i].fcstTime]["SKY"] = setPtyValue(data[i].fcstValue);
+		}
+	}
+	return returnData;
 }

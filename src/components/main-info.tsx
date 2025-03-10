@@ -1,10 +1,8 @@
-// 메인 기본 정보 컴포넌트
-'use client';
+/* 현재 날씨 */
 
-import * as common from "@/styles/common.css";
-import * as mainCSS from "@/styles/main.css";
 import * as code from "@/constants/code";
-
+import * as commonCSS from "@/styles/common.css";
+import * as mainCSS from "@/styles/main.css";
 import { getShortestRangeDate } from "@/utils/date";
 import { setCurrentWeather } from "@/utils/weather";
 
@@ -27,7 +25,7 @@ export default async function MainInfo() {
 
   return (
     <div className={mainCSS.info__wrap}>
-      <div className={mainCSS.info__icon}>
+      <div>
         <div
           className={`${mainCSS.icon__weather} ${mainCSS.icon__weather__large} ${mainCSS["icon__weather__" + weatherData['SKY']]}`}
         >
@@ -37,7 +35,7 @@ export default async function MainInfo() {
       <div className={mainCSS.info__box}>
 	      <div className={mainCSS.info__temperature}>
 		      {weatherData['T1H']}
-		      <small className={common.unit}>
+		      <small className={commonCSS.unit}>
 			      {code.WEATHER_UNIT['TMP']}
 		      </small>
 	      </div>

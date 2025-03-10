@@ -82,12 +82,18 @@ import { sp_weather } from "@/assets/images/index";
 export const icon__weather = style({
 	display: "inline-block",
 	backgroundImage: "url(" + sp_weather.src + ")",
+	backgroundRepeat:"no-repeat",
 	textIndent:'-9999px'
 });
 export const icon__weather__large = style({
 	width:'140px',
 	height:'140px',
 	backgroundSize:"980px 840px"
+});
+export const icon__weather__small = style({
+	width: "30px",
+	height: "30px",
+	backgroundSize:"210px 180px"
 });
 // 맑음
 export const icon__weather__1 = style({
@@ -103,7 +109,7 @@ export const icon__weather__3 = style({
 });
 // 비
 export const icon__weather__4 = style({
-	backgroundPosition:"-140px 0"
+	backgroundPosition:"17% 0"
 });
 // 비/눈
 export const icon__weather__5 = style({
@@ -111,21 +117,21 @@ export const icon__weather__5 = style({
 });
 // 눈
 export const icon__weather__6 = style({
-	backgroundPosition:"-280px 0"
+	backgroundPosition:"34% 0"
+});
+// 소나기
+export const icon__weather__7 = style({
+	backgroundPosition:"50% 0"
 });
 // 빗방울
-export const icon__weather__7 = style({
+export const icon__weather__8 = style({
 	backgroundPosition:"-840px -560px"
 });
 //빗방울/눈날림
-export const icon__weather__8 = style({
-	backgroundPosition:"-140px -420px"
+export const icon__weather__9 = style({
+	backgroundPosition:"17% 60%"
 });
 // 눈날림
-export const icon__weather__9 = style({
-	backgroundPosition:"0 -140px"
-});
-export const icon__weather__small = style({
-	width: "1.8rem",
-	height: "1.8rem",
+export const icon__weather__10 = style({
+	backgroundPosition:"0 20%"
 });
