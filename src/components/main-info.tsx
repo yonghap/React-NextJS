@@ -39,9 +39,12 @@ export default async function MainInfo() {
 			      {code.WEATHER_UNIT['TMP']}
 		      </small>
 	      </div>
-        <div className="info__meta">
-          <div className="info__location">서울시 강남구</div>
-          <div className="info__yesterday">어제보다 6°나 높아요</div>
+        <div class="info__meta">
+	        <div className={mainCSS.info__text}>
+		        {code.SKY_CODE[weatherData['SKY']]}
+	        </div>
+	        <div className={mainCSS.info__yesterday}>어제보다 6°나 높아요</div>
+	        <div className={mainCSS.info__location}>서울시 강남구</div>
         </div>
       </div>
     </div>

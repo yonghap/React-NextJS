@@ -2,15 +2,15 @@
 import * as code from "@/constants/code";
 
 const setPtyValue = (val : string)  : string => {
-	const newValue = Number(val) + 3;
+	const newValue = Number(val) + 4;
 	return newValue.toString();
 }
 
 export const setCurrentWeather = (data : Array<object>) : object => {
 	const t1h = data.find(i => i.category === 'T1H');
 	const sky = data.find(i => i.category === 'SKY');
-	// const pty = data.find(i => i.category === 'PTY');
-	const pty = {'fcstValue' : '3'}
+	const pty = data.find(i => i.category === 'PTY');
+
 	if (pty.fcstValue === '0') {
 		return {
 			'T1H' : t1h.fcstValue,

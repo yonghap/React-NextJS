@@ -1,4 +1,5 @@
 /* 시간별 날씨 */
+"use client";
 
 import * as code from "@/constants/code";
 import * as mainCSS from "@/styles/main.css";
@@ -15,7 +16,9 @@ export async function getCurrentWeather() {
       queryDate[1] +
       "&nx=55&ny=127&dataType=json"
   );
-  const json = await result.json();
+
+	console.log(queryDate);
+	const json = await result.json();
   return json.response.body.items.item;
 }
 
@@ -33,7 +36,6 @@ function checkNight(num: number): boolean {
 export default async function MainHourly() {
   const info = await getCurrentWeather();
   const weatherData = setHourlyWeather(info);
-	console.log('www',weatherData);
   return (
     <div>
       <div>

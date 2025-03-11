@@ -12,11 +12,22 @@ export const info__box = style({
 
 export const info__temperature = style({
   height: "2.4rem",
-  fontSize: "2.4rem",
+  fontSize: "2.6rem",
   fontWeight: "bold",
-  lineHeight: "2.4rem",
+  lineHeight: "2.6rem",
   color: "#333",
 });
+export const info__text = style({
+	margin:"5px 0"
+})
+export const info__yesterday = style({
+	fontSize:"0.8rem",
+	color:"#444"
+})
+export const info__location = style({
+	fontSize:"0.8rem",
+	color:"#444"
+})
 
 // 시간대별 날씨
 export const hourly__list = style({
@@ -100,38 +111,38 @@ export const icon__weather__1 = style({
 	backgroundPosition:"0 0"
 });
 // 구름많음
-export const icon__weather__2 = style({
-	backgroundPosition:"-840px -140px"
+export const icon__weather__3 = style({
+	backgroundPosition:"100% 20%"
 });
 // 흐림
-export const icon__weather__3 = style({
-	backgroundPosition:"-840px -420px"
+export const icon__weather__4 = style({
+	backgroundPosition:"100% 60%"
 });
 // 비
-export const icon__weather__4 = style({
+export const icon__weather__5 = style({
 	backgroundPosition:"17% 0"
 });
 // 비/눈
-export const icon__weather__5 = style({
-	backgroundPosition:"-560px 0"
+export const icon__weather__6 = style({
+	backgroundPosition:"17% 60%"
 });
 // 눈
-export const icon__weather__6 = style({
+export const icon__weather__7 = style({
 	backgroundPosition:"34% 0"
 });
 // 소나기
-export const icon__weather__7 = style({
+export const icon__weather__8 = style({
 	backgroundPosition:"50% 0"
 });
 // 빗방울
-export const icon__weather__8 = style({
-	backgroundPosition:"-840px -560px"
+export const icon__weather__9 = style({
+	backgroundPosition:"100% 80%"
 });
 //빗방울/눈날림
-export const icon__weather__9 = style({
-	backgroundPosition:"17% 60%"
+export const icon__weather__10 = style({
+	backgroundPosition:"67% 0"
 });
 // 눈날림
-export const icon__weather__10 = style({
+export const icon__weather__11 = style({
 	backgroundPosition:"0 20%"
 });
