@@ -1,4 +1,5 @@
 /* 현재 날씨 */
+"use client";
 
 import * as code from "@/constants/code";
 import * as commonCSS from "@/styles/common.css";
@@ -19,6 +20,13 @@ export async function getCurrentWeather() {
   return json.response.body.items.item;
 }
 
+function checkNight(sky:number): string {
+	const today = new Date();
+	const currentHours = today.getHours();
+	const nightTime = [19, 20, 21, 22, 23, 24, 1, 2, 3, 4, 5, 6];
+	return nightTime.includes(currentHours) ? sky + '__night' : sky;
+}
+
 export default async function MainInfo() {
   const info = await getCurrentWeather();
 	const weatherData = setCurrentWeather(info);
@@ -27,8 +35,11 @@ export default async function MainInfo() {
     <div className={mainCSS.info__wrap}>
       <div>
         <div
-          className={`${mainCSS.icon__weather} ${mainCSS.icon__weather__large} ${mainCSS["icon__weather__" + weatherData['SKY']]}`}
-        >
+          className={[
+	          mainCSS.icon__weather,
+	          mainCSS.icon__weather__large,
+	          mainCSS['icon__weather__' + checkNight(weatherData['SKY'])]
+          ].join(' ')}>
 	        {code.SKY_CODE[weatherData['SKY']]}
         </div>
       </div>
@@ -39,7 +50,7 @@ export default async function MainInfo() {
 			      {code.WEATHER_UNIT['TMP']}
 		      </small>
 	      </div>
-        <div class="info__meta">
+        <div className="info__meta">
 	        <div className={mainCSS.info__text}>
 		        {code.SKY_CODE[weatherData['SKY']]}
 	        </div>

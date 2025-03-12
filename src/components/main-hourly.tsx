@@ -17,20 +17,17 @@ export async function getCurrentWeather() {
       "&nx=55&ny=127&dataType=json"
   );
 
-	console.log(queryDate);
 	const json = await result.json();
   return json.response.body.items.item;
 }
-
-
 
 function setNumber(str: string): number {
   const cutNumber = str.substr(9, 2);
   return Number(cutNumber);
 }
-function checkNight(num: number): boolean {
+function checkNight(sky:number, num: number): string {
   const nightTime = [19, 20, 21, 22, 23, 24, 1, 2, 3, 4, 5, 6];
-  return nightTime.includes(num);
+	return nightTime.includes(num) ? sky + '__night' : sky;
 }
 
 export default async function MainHourly() {
@@ -48,9 +45,11 @@ export default async function MainHourly() {
                     {setNumber(key) + "시"}
                   </div>
                   <div className={mainCSS.hourly__icon}>
-	                  <div
-		                  className={`${mainCSS.icon__weather} ${mainCSS.icon__weather__small} ${mainCSS["icon__weather__" + weatherData[key].SKY]}`}
-	                  >
+	                  <div className={[
+											mainCSS.icon__weather,
+		                  mainCSS.icon__weather__small,
+		                  mainCSS['icon__weather__' + checkNight(weatherData[key].SKY, setNumber(key))]
+	                  ].join(' ')}>
 		                  {code.SKY_CODE[weatherData['SKY']]}
 	                  </div>
                   </div>

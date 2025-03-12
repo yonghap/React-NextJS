@@ -33,7 +33,7 @@ export const setHourlyWeather = (data: Array<string>) : object => {
 		return acc;
 	}, null);
 
-	for(let i = 36;i <= lastIndex; i++) {
+	for(let i = 12;i <= lastIndex; i++) {
 		if (data[i].category === "TMP") {
 			returnData[data[i].fcstDate + "_" + data[i].fcstTime] = {
 				DATE: data[i].fcstDate,
