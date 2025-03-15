@@ -7,57 +7,73 @@ import { QueryClient } from "@tanstack/react-query";
 import { daily__listwrap } from "@/styles/main.css";
 import { getLongRangeDate } from "@/utils/date";
 
-export async function getCurrentWeather() {
+// 중기 기온 예보
+export async function getMidTaFcst() {
   const queryData = getLongRangeDate();
   const test = await fetch(
     "http://apis.data.go.kr/1360000/MidFcstInfoService/getMidTa?serviceKey=hhPRU4TihqC7sGrFL7uNTmty4I7Hng2A57yNkCPaRsb%2BbnlxyetnLDADCFy%2FDh0KshzZmRBEyFO1VEMKNHeuPg%3D%3D&numOfRows=10&pageNo=1&regId=11B10101&tmFc=" +
-      queryData +
+      queryData.date +
       "&dataType=json"
   );
 
   const json = await test.json();
   const data = json.response.body;
-  return data.items.item[0];
+	return {
+		'taData' : data.items.item[0],
+		'fcstDays' : queryData.fcstDays
+	};
 }
-async function getDailyWeather() {
+// 중기 육상 예보
+async function getMidLandFcst() {
   const queryData = getLongRangeDate();
   const test = await fetch(
     "http://apis.data.go.kr/1360000/MidFcstInfoService/getMidLandFcst?serviceKey=hhPRU4TihqC7sGrFL7uNTmty4I7Hng2A57yNkCPaRsb%2BbnlxyetnLDADCFy%2FDh0KshzZmRBEyFO1VEMKNHeuPg%3D%3D&numOfRows=10&pageNo=1&regId=11B00000&tmFc=" +
-      queryData +
+	  queryData.date +
       "&dataType=json"
   );
 
   const json = await test.json();
   const data = json.response.body;
-  return data.items.item[0];
+  return {
+		'fcstData' : data.items.item[0],
+	  'fcstDays' : queryData.fcstDays
+  };
 }
-function dailyData(obj: object): object {
+
+function translateTaData(obj: object, days : number): object {
+	let tempData = [];
+	for (const key in obj) {
+		if (key.length <= 7 && key !== "regId") {
+			var regex = /[^0-9]/g;
+			var result = key.replace(regex, "");
+
+			if (key.includes("Min")) {
+				tempData[parseInt(result) - days] = [];
+				tempData[parseInt(result) - days].push(obj[key]);
+			}
+			if (key.includes("Max")) {
+				tempData[parseInt(result) - days].push(obj[key]);
+			}
+		}
+	}
+	return tempData;
+}
+function translateLandData(obj: object, days : number): object {
   let tempData = [];
 
   for (const key in obj) {
     if (key.includes("wf")) {
       var regex = /[^0-9]/g;
       var result = key.replace(regex, "");
-      tempData[parseInt(result) - 5] = [];
-      tempData[parseInt(result) - 5].push(obj[key]);
-    }
-  }
-  return tempData;
-}
-function translateData(obj: object): object {
-  let tempData = [];
-
-  for (const key in obj) {
-    if (key.length <= 7 && key !== "regId") {
-      var regex = /[^0-9]/g;
-      var result = key.replace(regex, "");
-      if (key.includes("Min")) {
-        tempData[parseInt(result) - 5] = [];
-        tempData[parseInt(result) - 5].push(obj[key]);
-      }
-      if (key.includes("Max")) {
-        tempData[parseInt(result) - 5].push(obj[key]);
-      }
+	    if (key.includes("Am")) {
+		    tempData[parseInt(result) - days] = [];
+		    tempData[parseInt(result) - days].push(obj[key]);
+	    } else if (key.includes("Pm")) {
+		    tempData[parseInt(result) - days].push(obj[key]);
+	    } else {
+		    tempData[parseInt(result) - days] = [];
+		    tempData[parseInt(result) - days].push(obj[key]);
+	    }
     }
   }
   return tempData;
@@ -68,10 +84,10 @@ function setNumber(str: string): number {
   return Number(cutNumber);
 }
 export default async function MainHourly() {
-  const info = await getCurrentWeather();
-  const info2 = await getDailyWeather();
-  const newData = await translateData(info);
-  const newData2 = await dailyData(info2);
+  const { taData, fcstDays } = await getMidTaFcst();
+  const { fcstData } = await getMidLandFcst();
+  const newData = await translateTaData(taData, fcstDays);
+  const newData2 = await translateLandData(fcstData, fcstDays);
 
   const nd = new Date();
   return (
@@ -86,17 +102,7 @@ export default async function MainHourly() {
                     {nd.getDate() + index + 5}일
                   </span>
                   <span>
-                    <div
-                      className={`${mainCSS.icon__weather} ${
-                        mainCSS.icon__weather__small
-                      } ${
-                        mainCSS[
-                          "icon__weather" + code.SKY_STATUS[newData2[index]]
-                        ]
-                      }`}
-                    >
-                      {newData2[index]}
-                    </div>
+                    {newData2[index][0]}
                   </span>
                   <span className={mainCSS.daily__listtemp}>
                     {i[0]} {code.WEATHER_UNIT["TMP"]} / {i[1]}

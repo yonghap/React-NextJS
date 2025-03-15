@@ -26,7 +26,7 @@ function setNumber(str: string): number {
   return Number(cutNumber);
 }
 function checkNight(sky:number, num: number): string {
-  const nightTime = [19, 20, 21, 22, 23, 24, 1, 2, 3, 4, 5, 6];
+  const nightTime = [19, 20, 21, 22, 23, 24, 0, 1, 2, 3, 4, 5, 6];
 	return nightTime.includes(num) ? sky + '__night' : sky;
 }
 

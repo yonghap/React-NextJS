@@ -23,7 +23,7 @@ export async function getCurrentWeather() {
 function checkNight(sky:number): string {
 	const today = new Date();
 	const currentHours = today.getHours();
-	const nightTime = [19, 20, 21, 22, 23, 24, 1, 2, 3, 4, 5, 6];
+	const nightTime = [19, 20, 21, 22, 23, 24, 0, 1, 2, 3, 4, 5, 6];
 	return nightTime.includes(currentHours) ? sky + '__night' : sky;
 }
 

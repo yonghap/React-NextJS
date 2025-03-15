@@ -73,7 +73,7 @@ export const getShortRangeDate = (): Array<string> => {
 };
 
 // 중기 예보 시간 날짜/시간 구하기
-export const getLongRangeDate = (): string => {
+export const getLongRangeDate = (): Object => {
   const today = new Date();
   const yesterDayDate = new Date();
   yesterDayDate.setDate(today.getDate() - 1);
@@ -83,28 +83,31 @@ export const getLongRangeDate = (): string => {
     currentHours < 6 ? "yesterday" : currentHours < 18 ? "day" : "night";
   switch (currentTime) {
     case "yesterday":
-      return (
-        yesterDayDate.getFullYear() +
-        ("0" + (1 + yesterDayDate.getMonth())).slice(-2) +
-        addZeroDate(yesterDayDate.getDate()) +
-        "1800"
-      );
+      return {
+	      'date' : yesterDayDate.getFullYear() +
+		      ("0" + (1 + yesterDayDate.getMonth())).slice(-2) +
+		      addZeroDate(yesterDayDate.getDate()) +
+		      "1800",
+	      'fcstDays' : 5
+      }
       break;
     case "day":
-      return (
-        today.getFullYear() +
-        ("0" + (1 + today.getMonth())).slice(-2) +
-        addZeroDate(today.getDate()) +
-        "0600"
-      );
+      return {
+	      'date' : today.getFullYear() +
+		      ("0" + (1 + today.getMonth())).slice(-2) +
+		      addZeroDate(today.getDate()) +
+		      "0600",
+	      'fcstDays' : 4
+      };
       break;
     case "night":
-      return (
-        today.getFullYear() +
-        ("0" + (1 + today.getMonth())).slice(-2) +
-        addZeroDate(today.getDate()) +
-        "1800"
-      );
+      return {
+	      'date' : today.getFullYear() +
+		      ("0" + (1 + today.getMonth())).slice(-2) +
+		      addZeroDate(today.getDate()) +
+		      "1800",
+	      'fcstDays' : 5
+      }
       break;
   }
 };
