@@ -73,7 +73,7 @@ export const air__icon = style({
 export const daily__listwrap = style({
   display: "flex",
   justifyContent: "space-between",
-  margin: "5px 0",
+  margin: "10px 0",
   fontSize: ".8rem",
   color: "#666",
 });
@@ -81,6 +81,11 @@ export const daily__listday = style({
   flexBasis: "60px",
   color: "#333",
   fontWeight: "bold",
+});
+export const daily__textday = style({
+	fontSize:'0.9em',
+	fontWeight:'normal',
+	color: "#888",
 });
 export const daily__listtemp = style({
   flexBasis: "70px",

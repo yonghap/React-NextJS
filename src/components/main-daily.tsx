@@ -1,10 +1,7 @@
 // 메인 일별 날짜 예보
-import * as common from "@/styles/common.css";
+import * as commonCSS from "@/styles/common.css";
 import * as mainCSS from "@/styles/main.css";
 import * as code from "@/constants/code";
-import * as icon_weather from "@/assets/images/icon_weather/index";
-import { QueryClient } from "@tanstack/react-query";
-import { daily__listwrap } from "@/styles/main.css";
 import { getLongRangeDate } from "@/utils/date";
 
 // 중기 기온 예보
@@ -78,6 +75,21 @@ function translateLandData(obj: object, days : number): object {
   }
   return tempData;
 }
+function setDate(days) {
+	let week = new Array('일','월','화','수','목','금','토');
+	let dateList = [];
+
+	for(let i = days;i <= 10;i++) {
+		const nd = new Date();
+		const nextDate = new Date(nd.setDate(nd.getDate() + i));
+		dateList.push({
+			'date' : nextDate.getDate(),
+			'day' : week[nextDate.getDay()]
+		});
+	}
+
+	return dateList;
+}
 
 function setNumber(str: string): number {
   const cutNumber = str.substr(9, 2);
@@ -86,27 +98,35 @@ function setNumber(str: string): number {
 export default async function MainHourly() {
   const { taData, fcstDays } = await getMidTaFcst();
   const { fcstData } = await getMidLandFcst();
-  const newData = await translateTaData(taData, fcstDays);
-  const newData2 = await translateLandData(fcstData, fcstDays);
+  const taList = await translateTaData(taData, fcstDays);
+  const landList = await translateLandData(fcstData, fcstDays);
+	const dataList = setDate(fcstDays);
 
-  const nd = new Date();
   return (
     <div>
       <div>
         <div>
           <ul>
-            {newData.map((i, index) => {
+            {dataList.map((i, index) => {
               return (
                 <li key={index} className={mainCSS.daily__listwrap}>
                   <span className={mainCSS.daily__listday}>
-                    {nd.getDate() + index + 5}일
+                    {i.date}일
+	                  <span className={mainCSS.daily__textday}>
+		                  ({i.day})
+	                  </span>
                   </span>
                   <span>
-                    {newData2[index][0]}
+                    {landList[index][0]} / {landList[index][1]}
                   </span>
                   <span className={mainCSS.daily__listtemp}>
-                    {i[0]} {code.WEATHER_UNIT["TMP"]} / {i[1]}
-                    {code.WEATHER_UNIT["TMP"]}
+	                  <span className={commonCSS.blue}>
+		                  {taList[index][0]}{code.WEATHER_UNIT["TMP"]}
+	                  </span>
+	                  <small className={commonCSS.bar}>/</small>
+	                  <span className={commonCSS.red}>
+		                  {taList[index][1]}{code.WEATHER_UNIT["TMP"]}
+	                  </span>
                   </span>
                 </li>
               );

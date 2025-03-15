@@ -9,6 +9,19 @@ export const wrap = style({
   backgroundColor: "#eee",
 });
 
+export const blue = style({
+	color:'#0000cc'
+})
+
+export const red = style({
+	color:'#cc0000'
+})
+
+export const bar = style({
+	margin:"0 2px",
+	color:'#ccc'
+})
+
 export const row = style({
   maxWidth: "1000px",
   margin: "0 auto",
