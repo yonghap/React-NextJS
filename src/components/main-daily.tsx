@@ -3,6 +3,7 @@ import * as commonCSS from "@/styles/common.css";
 import * as mainCSS from "@/styles/main.css";
 import * as code from "@/constants/code";
 import { getLongRangeDate } from "@/utils/date";
+import {SKY_CODE_LONG} from "@/constants/code";
 
 // 중기 기온 예보
 export async function getMidTaFcst() {
@@ -95,6 +96,11 @@ function setNumber(str: string): number {
   const cutNumber = str.substr(9, 2);
   return Number(cutNumber);
 }
+function checkNight(sky:string): number {
+	const weatherText = code.SKY_CODE_LONG[sky];
+	return weatherText;
+}
+
 export default async function MainHourly() {
   const { taData, fcstDays } = await getMidTaFcst();
   const { fcstData } = await getMidLandFcst();
@@ -116,9 +122,23 @@ export default async function MainHourly() {
 		                  ({i.day})
 	                  </span>
                   </span>
-                  <span>
-                    {landList[index][0]} / {landList[index][1]}
-                  </span>
+                  <div>
+	                  <div className={[
+		                  mainCSS.icon__weather,
+		                  mainCSS.icon__weather__small,
+		                  mainCSS['icon__weather__' + checkNight(landList[index][0])]
+	                  ].join(' ')}>
+	                  </div>
+	                  { landList[index][1] !== undefined &&
+		                  <div className={[
+		                  mainCSS.icon__weather__bar,
+		                  mainCSS.icon__weather,
+		                  mainCSS.icon__weather__small,
+		                  mainCSS['icon__weather__' + checkNight(landList[index][1])]
+		                  ].join(' ')}>
+		                  </div>
+										}
+                  </div>
                   <span className={mainCSS.daily__listtemp}>
 	                  <span className={commonCSS.blue}>
 		                  {taList[index][0]}{code.WEATHER_UNIT["TMP"]}

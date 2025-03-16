@@ -73,6 +73,7 @@ export const air__icon = style({
 export const daily__listwrap = style({
   display: "flex",
   justifyContent: "space-between",
+	alignItems:"center",
   margin: "10px 0",
   fontSize: ".8rem",
   color: "#666",
@@ -97,9 +98,23 @@ import { sp_weather } from "@/assets/images/index";
 
 export const icon__weather = style({
 	display: "inline-block",
+	position:"relative",
 	backgroundImage: "url(" + sp_weather.src + ")",
 	backgroundRepeat:"no-repeat",
-	textIndent:'-9999px'
+	textIndent:'-9999px',
+	verticalAlign:'top'
+});
+export const icon__weather__bar = style({
+	marginLeft:"5px",
+	":before": {
+		content: "/",
+		display:"block",
+		position:"absolute",
+		top:"5px",
+		left:"-5px",
+		color:'#ccc',
+		textIndent:'0px'
+	}
 });
 export const icon__weather__large = style({
 	width:'140px',

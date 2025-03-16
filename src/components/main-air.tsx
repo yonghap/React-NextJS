@@ -4,22 +4,17 @@ import * as mainCSS from "@/styles/main.css";
 import * as code from "@/constants/code";
 import * as icon_weather from "@/assets/images/icon_weather/index";
 import { QueryClient } from "@tanstack/react-query";
+import { getAirDate } from "@/utils/date";
+
 
 export async function getCurrentWeather() {
-  var date = new Date();
-  var yesterday = new Date(date.setDate(date.getDate() - 1));
-  // var yesterday = new Date(date.setDate(date.getDate()));
-  var year = yesterday.getFullYear();
-  var month = ("0" + (1 + yesterday.getMonth())).slice(-2);
-  var day = ("0" + yesterday.getDate()).slice(-2);
-
-  var newD = year + "-" + month + "-" + day;
+  const queryDate = getAirDate();
   const test = await fetch(
-    "https://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getMinuDustFrcstDspth?serviceKey=hhPRU4TihqC7sGrFL7uNTmty4I7Hng2A57yNkCPaRsb%2BbnlxyetnLDADCFy%2FDh0KshzZmRBEyFO1VEMKNHeuPg%3D%3D&returnType=json&numOfRows=5&pageNo=1&searchDate=" +
-      newD +
+    "https://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getMinuDustFrcstDspth?serviceKey=hhPRU4TihqC7sGrFL7uNTmty4I7Hng2A57yNkCPaRsb%2BbnlxyetnLDADCFy%2FDh0KshzZmRBEyFO1VEMKNHeuPg%3D%3D&returnType=json&numOfRows=10&pageNo=1&searchDate=" +
+	  queryDate +
       "&InformCode=PM10"
   );
-
+	console.log(queryDate);
   const json = await test.json();
   const data = json.response.body;
   return data.items;

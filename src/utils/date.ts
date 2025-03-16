@@ -111,3 +111,14 @@ export const getLongRangeDate = (): Object => {
       break;
   }
 };
+
+// 중기 예보 시간 날짜/시간 구하기
+export const getAirDate = (): string => {
+	var date = new Date();
+	var yesterday = new Date(date.setDate(date.getDate() - 1));
+	var year = yesterday.getFullYear();
+	var month = ("0" + (1 + yesterday.getMonth())).slice(-2);
+	var day = ("0" + yesterday.getDate()).slice(-2);
+
+	return year + "-" + month + "-" + day;
+}
