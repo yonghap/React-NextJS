@@ -14,16 +14,27 @@ export async function getCurrentWeather() {
 	  queryDate +
       "&InformCode=PM10"
   );
-	console.log(queryDate);
   const json = await test.json();
   const data = json.response.body;
   return data.items;
 }
 
-function translateData(obj: object): object {
-  let tempData = new Object();
+function translateData(arr: Array<object>): object {
+  let pm10 = {}, pm25 = {};
 
-  return tempData;
+	arr.forEach((i,index) => {
+		if (!pm10.hasOwnProperty(i.informData) && i.informCode === 'PM10') {
+			pm10[i.informData] = setAir(i.informGrade);
+		}
+		if (!pm25.hasOwnProperty(i.informData) && i.informCode === 'PM25') {
+			pm25[i.informData] = setAir(i.informGrade);
+		}
+	});
+
+	return {
+		'PM10' : pm10,
+		'PM25' : pm25
+	}
 }
 
 function setNumber(str: string): number {
@@ -43,24 +54,36 @@ function setAir(info: string): string {
 export default async function MainHourly() {
   const info = await getCurrentWeather();
 
-  const newData = await translateData(info);
+  const { PM10, PM25 } = await translateData(info);
 
   return (
     <div>
       <div>
         <div>
           <ul className={mainCSS.air__list}>
-            {info.map((i, index) => (
-              <li key={i.informData + index} className={mainCSS.air__listwrap}>
-                <div className={mainCSS.air__listdate}>
-                  {setNumber(i.informData) + "일"}
-                </div>
-                <div className={mainCSS.air__listitem}>
-                  {setAir(i.informGrade)}
-                </div>
-              </li>
-            ))}
+	          {Object.keys(PM10).map((key, index) => (
+		          <li key={index}>
+			          <div className={mainCSS.air__date}>
+			            {setNumber(key) + '일'}
+			          </div>
+			          <div className={mainCSS.air__status}>
+				          {PM10[key]}
+			          </div>
+		          </li>
+	          ))}
           </ul>
+	        <ul className={mainCSS.air__list}>
+		        {Object.keys(PM25).map((key, index) => (
+			        <li key={index}>
+				        <div className={mainCSS.air__date}>
+					        {setNumber(key) + '일'}
+				        </div>
+				        <div className={mainCSS.air__status}>
+					        {PM25[key]}
+				        </div>
+			        </li>
+		        ))}
+	        </ul>
         </div>
       </div>
     </div>

@@ -63,6 +63,8 @@ export const getShortRangeDate = (): Array<string> => {
                 addZeroDate(yesterDayDate.getDate()),
               "2300",
             ];
+          } else {
+	          return [getToday(), addZeroTime(forecastTimes[i - 1])];;
           }
         }
       } else if (currentHours < forecastTimes[i]) {
@@ -114,11 +116,16 @@ export const getLongRangeDate = (): Object => {
 
 // 중기 예보 시간 날짜/시간 구하기
 export const getAirDate = (): string => {
-	var date = new Date();
-	var yesterday = new Date(date.setDate(date.getDate() - 1));
-	var year = yesterday.getFullYear();
-	var month = ("0" + (1 + yesterday.getMonth())).slice(-2);
-	var day = ("0" + yesterday.getDate()).slice(-2);
+	var date = new Date(), newDate;
+
+	if (date.getHours() < 6) {
+		newDate = new Date(date.setDate(date.getDate() - 1));
+	} else {
+		newDate = date;
+	}
+	var year = newDate.getFullYear();
+	var month = ("0" + (1 + newDate.getMonth())).slice(-2);
+	var day = ("0" + newDate.getDate()).slice(-2);
 
 	return year + "-" + month + "-" + day;
 }
