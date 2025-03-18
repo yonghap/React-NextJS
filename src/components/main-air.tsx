@@ -59,20 +59,30 @@ export default async function MainHourly() {
   return (
     <div>
       <div>
-        <div>
-          <ul className={mainCSS.air__list}>
+        <div className={mainCSS.air__wrap}>
+	        <div className={mainCSS.air__box}>
+		        <h2 className={mainCSS.air__title}>
+			        미세먼지
+		        </h2>
+            <ul className={mainCSS.air__list}>
 	          {Object.keys(PM10).map((key, index) => (
 		          <li key={index}>
 			          <div className={mainCSS.air__date}>
 			            {setNumber(key) + '일'}
 			          </div>
 			          <div className={mainCSS.air__status}>
+				          <div className={mainCSS['air__icon' + code.AIR_CODE[PM10[key]]}
 				          {PM10[key]}
 			          </div>
 		          </li>
 	          ))}
           </ul>
-	        <ul className={mainCSS.air__list}>
+	        </div>
+	        <div className={mainCSS.air__box}>
+		        <h2 className={mainCSS.air__title}>
+			        초미세먼지
+		        </h2>
+	          <ul className={mainCSS.air__list}>
 		        {Object.keys(PM25).map((key, index) => (
 			        <li key={index}>
 				        <div className={mainCSS.air__date}>
@@ -84,6 +94,7 @@ export default async function MainHourly() {
 			        </li>
 		        ))}
 	        </ul>
+	        </div>
         </div>
       </div>
     </div>

@@ -35,3 +35,9 @@ export const SKY_CODE_LONG = {
   '흐리고 비/눈': '6',
   '흐리고 소나기': '8',
 };
+
+export const AIR_CODE = {
+	'좋음' : '1',
+	'보통' : '2',
+	'나쁨' : '3'
+};

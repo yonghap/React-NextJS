@@ -49,17 +49,28 @@ export const hourly__listtime = style({
 export const hourly__icon = style({
   margin: "5px 0",
 });
-
+export const air__wrap = style({
+	display:"flex",
+	gap:"46px"
+});
+export const air__box = style({
+	flex:"1",
+})
+export const air__title = style({
+	marginBottom:"10px",
+	fontSize:"0.9rem",
+	textAlign:"center",
+})
 export const air__list = style({
   display: "flex",
   justifyContent: "space-between",
   textAlign: "center",
 });
-export const air__listwrap = style({
-  fontSize: ".8rem",
-});
-export const air__listdate = style({
-  color: "#666",
+
+export const air__date = style({
+	fontSize:"0.8rem",
+	fontWeight:"bold",
+  color: "#333",
 });
 
 export const air__listitem = style({
