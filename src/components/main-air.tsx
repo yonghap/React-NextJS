@@ -48,7 +48,7 @@ function checkNight(num: number): boolean {
 function setAir(info: string): string {
   const airList = info.split(",");
   const airStats = airList[0].split(":");
-  return airStats[1];
+  return airStats[1].replace(" ","");
 }
 
 export default async function MainHourly() {
@@ -71,8 +71,9 @@ export default async function MainHourly() {
 			            {setNumber(key) + '일'}
 			          </div>
 			          <div className={mainCSS.air__status}>
-				          <div className={mainCSS['air__icon' + code.AIR_CODE[PM10[key]]}
-				          {PM10[key]}
+				          <div className={mainCSS['air__icon__' + code.AIR_CODE[PM10[key]]]}>
+					          {PM10[key]}
+				          </div>
 			          </div>
 		          </li>
 	          ))}

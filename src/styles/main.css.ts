@@ -73,10 +73,15 @@ export const air__date = style({
   color: "#333",
 });
 
-export const air__listitem = style({
+export const air__icon__1 = style({
   fontWeight: "bold",
 });
-
+export const air__icon__2 = style({
+	fontWeight: "bold",
+});
+export const air__icon__3 = style({
+	fontWeight: "bold",
+});
 export const air__icon = style({
   margin: "5px 0",
 });
