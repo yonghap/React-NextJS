@@ -71,7 +71,10 @@ export default async function MainHourly() {
 			            {setNumber(key) + '일'}
 			          </div>
 			          <div className={mainCSS.air__status}>
-				          <div className={mainCSS['air__icon__' + code.AIR_CODE[PM10[key]]]}>
+				          <div className={[
+					          mainCSS.icon__air,
+					          mainCSS['icon__air__' + code.AIR_CODE[PM10[key]]]
+				          ].join(' ')}>
 					          {PM10[key]}
 				          </div>
 			          </div>
@@ -90,7 +93,12 @@ export default async function MainHourly() {
 					        {setNumber(key) + '일'}
 				        </div>
 				        <div className={mainCSS.air__status}>
-					        {PM25[key]}
+					        <div className={[
+						        mainCSS.icon__air,
+						        mainCSS['icon__air__' + code.AIR_CODE[PM25[key]]]
+					        ].join(' ')}>
+					          {PM25[key]}
+					        </div>
 				        </div>
 			        </li>
 		        ))}

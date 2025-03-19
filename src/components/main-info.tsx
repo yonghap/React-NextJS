@@ -1,5 +1,4 @@
 /* 현재 날씨 */
-"use client";
 
 import * as code from "@/constants/code";
 import * as commonCSS from "@/styles/common.css";

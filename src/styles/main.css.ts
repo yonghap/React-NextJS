@@ -51,7 +51,18 @@ export const hourly__icon = style({
 });
 export const air__wrap = style({
 	display:"flex",
-	gap:"46px"
+	position:"relative",
+	gap:"46px",
+	":before": {
+		content: "",
+		display:"block",
+		position:"absolute",
+		top:"15%",
+		left:"50%",
+		width:"1px",
+		height:"70%",
+		backgroundColor:"#eee",
+	}
 });
 export const air__box = style({
 	flex:"1",
@@ -68,11 +79,12 @@ export const air__list = style({
 });
 
 export const air__date = style({
-	fontSize:"0.8rem",
-	fontWeight:"bold",
-  color: "#333",
+	fontSize:"0.7rem",
+  color: "#888",
 });
-
+export const air__status = style({
+	marginTop:"4px"
+});
 export const air__icon__1 = style({
   fontWeight: "bold",
 });
@@ -110,6 +122,27 @@ export const daily__listtemp = style({
   textAlign: "right",
 });
 
+import sp_air from "@/assets/images/sp_air.png";
+export const icon__air = style({
+	display: "inline-block",
+	position:"relative",
+	width: "30px",
+	height: "30px",
+	backgroundImage: "url(" + sp_air.src + ")",
+	backgroundSize:"150px 30px",
+	backgroundRepeat:"no-repeat",
+	textIndent:'-9999px',
+	verticalAlign:'top'
+});
+export const icon__air__1 = style({
+	backgroundPosition:"0 0"
+});
+export const icon__air__2 = style({
+	backgroundPosition:"50% 0"
+});
+export const icon__air__3 = style({
+	backgroundPosition:"75% 0"
+});
 import { sp_weather } from "@/assets/images/index";
 
 export const icon__weather = style({
@@ -120,6 +153,7 @@ export const icon__weather = style({
 	textIndent:'-9999px',
 	verticalAlign:'top'
 });
+
 export const icon__weather__bar = style({
 	marginLeft:"5px",
 	":before": {

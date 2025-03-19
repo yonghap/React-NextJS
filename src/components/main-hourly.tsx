@@ -1,5 +1,4 @@
 /* 시간별 날씨 */
-"use client";
 
 import * as code from "@/constants/code";
 import * as mainCSS from "@/styles/main.css";
@@ -16,7 +15,6 @@ export async function getCurrentWeather() {
       queryDate[1] +
       "&nx=55&ny=127&dataType=json"
   );
-	console.log(queryDate);
 	const json = await result.json();
   return json.response.body.items.item;
 }
