@@ -14,6 +14,7 @@ import MainInfo from "@/components/main-info";
 import MainHourly from "@/components/main-hourly";
 import MainDaily from "@/components/main-daily";
 import MainAir from "@/components/main-air";
+import * as mainCSS from "@/styles/main.css";
 // import icon_weather_sunny from "@/assets/images/icon_weather/sunny.png";
 
 export default async function Home() {
