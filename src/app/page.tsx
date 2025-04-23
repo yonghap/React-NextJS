@@ -21,6 +21,7 @@ export default async function Home() {
   return (
     <div>
       <Header />
+	    페이지
       <div className={common.boxs}>
         {/*기본 날씨 정보*/}
         <div className={common.box}>

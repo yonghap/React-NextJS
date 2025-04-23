@@ -1,16 +1,9 @@
 import Movie from "../../components/movie";
 import styles from "../../styles/home.module.css";
 import { API_URL } from "../constants";
-import {
-  useQuery,
-  useMutation,
-  useQueryClient,
-  QueryClient,
-  QueryClientProvider,
-} from "@tanstack/react-query";
 
 export const metadata = {
-  title: "HOME",
+  title: "Home",
 };
 
 async function getMovies() {
@@ -20,9 +13,8 @@ async function getMovies() {
   return json;
 }
 
-export default function HomePage() {
-  return <div>{JSON.stringify("test")}</div>;
-  /*
+export default async function HomePage() {
+  const movies = await getMovies();
   return (
     <div className={styles.container}>
       {movies.map((movie) => (
@@ -34,5 +26,7 @@ export default function HomePage() {
         />
       ))}
     </div>
-  );*/
+  );
 }
+
+export const runtime = "edge";

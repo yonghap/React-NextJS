@@ -23,7 +23,7 @@ export default function RootLayout({
       <body>
         <div className={common.wrap}>
           <div>
-            <TanstackProvider>{children}</TanstackProvider>
+            {children}
           </div>
         </div>
       </body>
