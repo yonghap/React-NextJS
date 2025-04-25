@@ -1,10 +1,26 @@
 /* 현재 날씨 */
+'use client';
 
+import { useQuery } from '@tanstack/react-query';
 import * as code from "@/constants/code";
 import * as commonCSS from "@/styles/common.css";
 import * as mainCSS from "@/styles/main.css";
 import { getShortestRangeDate } from "@/utils/date";
 import { setCurrentWeather } from "@/utils/weather";
+
+async function fetchData() {
+	const queryDate = getShortestRangeDate();
+	const result = await fetch(
+		"http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtFcst?serviceKey=hhPRU4TihqC7sGrFL7uNTmty4I7Hng2A57yNkCPaRsb%2BbnlxyetnLDADCFy%2FDh0KshzZmRBEyFO1VEMKNHeuPg%3D%3D&numOfRows=50&pageNo=1&base_date=" +
+		queryDate[0] +
+		"&base_time=" +
+		queryDate[1] +
+		"&nx=55&ny=127&dataType=json"
+	);
+	if (!result.ok) throw new Error('데이터를 불러오는데 실패했습니다.');
+	const json = await result.json();
+	return json.response.body.items.item;
+}
 
 export async function getCurrentWeather() {
   const queryDate = getShortestRangeDate();
@@ -27,9 +43,12 @@ function checkNight(sky:number): string {
 }
 
 export default async function MainInfo() {
-  const info = await getCurrentWeather();
-	const weatherData = setCurrentWeather(info);
+	const { data, error, isLoading } = useQuery({
+		queryKey: ['user'],
+		queryFn: () => fetchData(),
+	});
 
+	const weatherData = setCurrentWeather(data);
   return (
     <div className={mainCSS.info__wrap}>
       <div>
