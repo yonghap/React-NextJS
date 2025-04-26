@@ -1,7 +1,8 @@
-const { createVanillaExtractPlugin } = require("@vanilla-extract/next-plugin");
-const withVanillaExtract = createVanillaExtractPlugin();
-
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+	experimental: {
+		appDir: true,  // ✅ app/ 디렉토리 사용하는 경우 필요
+	},
+}
 
-module.exports = withVanillaExtract(nextConfig);
+module.exports = nextConfig

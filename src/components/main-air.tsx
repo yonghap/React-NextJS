@@ -1,6 +1,4 @@
 // 메인 기본 정보 컴포넌트
-import * as common from "@/styles/common.css";
-import * as mainCSS from "@/styles/main.css";
 import * as code from "@/constants/code";
 import * as icon_weather from "@/assets/images/icon_weather/index";
 import { QueryClient } from "@tanstack/react-query";

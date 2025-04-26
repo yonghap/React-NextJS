@@ -1,6 +1,4 @@
 // 메인 일별 날짜 예보
-import * as commonCSS from "@/styles/common.css";
-import * as mainCSS from "@/styles/main.css";
 import * as code from "@/constants/code";
 import { getLongRangeDate } from "@/utils/date";
 import {SKY_CODE_LONG} from "@/constants/code";

@@ -1,7 +1,6 @@
 'use client';
 
-import "@/styles/reset.css";
-import * as common from "@/styles/common.css";
+import './globals.css';
 import { ReactNode } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
@@ -11,11 +10,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 	return (
 		<html lang="ko">
 		<body>
-		<div className={common.wrap}>
-			<QueryClientProvider client={queryClient}>
-				{children}
-			</QueryClientProvider>
-		</div>
+			<di>
+				<QueryClientProvider client={queryClient}>
+					{children}
+				</QueryClientProvider>
+			</di>
 		</body>
 		</html>
 	);

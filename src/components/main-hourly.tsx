@@ -1,7 +1,6 @@
 /* 시간별 날씨 */
 
 import * as code from "@/constants/code";
-import * as mainCSS from "@/styles/main.css";
 import { getShortRangeDate } from "@/utils/date";
 import { setHourlyWeather } from "@/utils/weather";
 

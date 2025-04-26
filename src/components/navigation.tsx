@@ -1,16 +1,5 @@
 "use client";
 
-import Link from "next/link";
-import * as common from "@/styles/common.css";
-import * as header from "@/styles/header.css";
-import { useQuery } from "@tanstack/react-query";
-
-import { usePathname, useSearchParams } from "next/navigation";
-import { getQueryClient } from "../app/get-query-client";
-import { useSuspenseQuery } from "@tanstack/react-query";
-
-import { getUser } from "../app/api/userAPI";
-
 export default function Navigation() {
   // const path = usePathname();
   // const queryClient = getQueryClient();
@@ -28,9 +17,9 @@ export default function Navigation() {
 
   return (
     <header id="header">
-      <div className={`${common.row} ${header.header__wrap}`}>
-        <h1 className={header.logo}>
-          <span className={header.title}>Weather Korea</span>
+      <div>
+        <h1>
+          <span>Game Korea</span>
         </h1>
       </div>
     </header>
