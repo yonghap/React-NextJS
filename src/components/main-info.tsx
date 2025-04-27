@@ -2,10 +2,6 @@
 'use client';
 
 import { useQuery } from '@tanstack/react-query';
-import * as code from "@/constants/code";
-import { getShortestRangeDate } from "@/utils/date";
-import { setCurrentWeather } from "@/utils/weather";
-
 
 async function fetchData() {
 	const result = await fetch('/api/topSellers');
@@ -19,11 +15,17 @@ export default function MainInfo() {
 		queryKey : ['user'],
 		queryFn : () => fetchData(),
 	});
-	// if (isLoading) return <p>로딩 중...</p>;
-	// if (error) return <p>에러 발생: {(error as Error).message}</p>;
+	if (isLoading) return <p>로딩 중...</p>;
+	if (error) return <p>에러 발생: {(error as Error).message}</p>;
   return (
-    <p className="bg-blue-500 text-white p-4">
-	    {JSON.stringify(data)}
-    </p>
+    <ul class="max-w-[1000px] m-auto flex flex-wrap gap-3">
+	    {data.map((i) => {
+				return(
+		      <li class="shadow-lg radius-lg basis-[calc((100%-20px*4)/5)]">
+			      <img src={i.header_image}></img>
+		      </li>
+				)
+			})}
+    </ul>
   );
 }
