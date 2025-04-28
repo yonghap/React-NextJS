@@ -18,14 +18,17 @@ export default function MainInfo() {
 	if (isLoading) return <p>로딩 중...</p>;
 	if (error) return <p>에러 발생: {(error as Error).message}</p>;
   return (
-    <ul class="max-w-[1000px] m-auto flex flex-wrap gap-3">
-	    {data.map((i) => {
-				return(
-		      <li class="shadow-lg radius-lg basis-[calc((100%-20px*4)/5)]">
-			      <img src={i.header_image}></img>
-		      </li>
-				)
-			})}
-    </ul>
-  );
+		<div className="max-w-[1000px] m-auto">
+			<h2 className="mb-4 text-slate-200 font-bold text-xl">인기게임</h2>
+	    <ul className="flex flex-wrap gap-5">
+		    {data.map((i) => {
+					return(
+			      <li className="shadow-lg radius-lg basis-[calc((100%-20px*4)/5)]">
+				      <img src={i.header_image}></img>
+			      </li>
+					)
+				})}
+	    </ul>
+		</div>
+	);
 }

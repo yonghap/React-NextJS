@@ -10,11 +10,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 	return (
 		<html lang="ko">
 		<body style={{ backgroundImage: `url(${bgImage.src})` }}>
-			<di>
+			<div>
 				<QueryClientProvider client={queryClient}>
 					{children}
 				</QueryClientProvider>
-			</di>
+			</div>
 		</body>
 		</html>
 	);
