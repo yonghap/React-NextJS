@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 const DAYS = ['일', '월', '화', '수', '목', '금', '토'];
 
-const Calendar = () => {
+const Calendar = ({ eventMap }) => {
 	const today = new Date();
 	const [currentDate, setCurrentDate] = useState(new Date(today.getFullYear(), today.getMonth(), 1));
 
@@ -23,26 +23,57 @@ const Calendar = () => {
 
 	const dates = [];
 	for (let i = 0; i < firstDay; i++) {
-		dates.push(null);
+		dates.push({
+			date: '',
+			text: ''
+		});
 	}
 	for (let d = 1; d <= daysInMonth; d++) {
-		dates.push(d);
+		dates.push({
+			date: d,
+			text: year + '-' + (month + 1).toString().padStart(2, "0") + '-' + d.toString().padStart(2, "0")
+		});
 	}
+	// const dayEvents = eventMap.get('2025-05-01') || [];
+	// console.log('eventMap', eventMap);
 
 	return (
-		<div className="text-slate-100 text-center">
+		<div>
 			<h2>{year} - {month + 1}</h2>
 			<button onClick={prevMonth}>◀</button>
 			<button onClick={nextMonth}>▶</button>
 			<div className="grid grid-cols-[repeat(7,1fr)] mt-4">
 				{DAYS.map(day => (
-					<div key={day} style={{ fontWeight: 'bold' }}>{day}</div>
+					<div key={day} className="text-center">{day}</div>
 				))}
-				{dates.map((date, idx) => (
-					<div key={idx} style={{ padding: '8px', border: '1px solid #ddd', minHeight: '40px' }}>
-						{date}
-					</div>
-				))}
+				{dates.map((date, idx) => {
+					const dayEvents = eventMap.get(date.text) || []
+					const maxVisible = 3;
+					const visibleEvents = dayEvents.slice(0, maxVisible);
+					const extraCount = dayEvents.length - maxVisible;
+					return (
+						<div key={idx} className="border -ml-px -mb-px pb-4 text-slate-50">
+							<div className="flex items-start">
+								<strong className="absolute w-[30px] shrink-0 text-slate-50 text-center">
+									{date['date']}
+								</strong>
+								<div>
+									{visibleEvents.map((event) => (
+										<div key={event.id} className="mb-3 text-xs">
+											<figure>
+												<img src={event.background_image} />
+											</figure>
+											{event.name}
+										</div>
+									))}
+									{extraCount > 0 && (
+										<div className="event-more">+ {extraCount}개 더보기</div>
+									)}
+								</div>
+							</div>
+						</div>
+					)
+				})}
 			</div>
 		</div>
 	);

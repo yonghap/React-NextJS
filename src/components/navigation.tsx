@@ -5,7 +5,7 @@ export default function Navigation() {
     <header id="header">
       <div>
         <h1 className="py-10 text-2xl font-bold text-center">
-          <span className="text-slate-200">My Game Calender</span>
+          <span>My Game Calender</span>
         </h1>
       </div>
     </header>
