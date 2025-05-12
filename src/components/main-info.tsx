@@ -12,7 +12,7 @@ async function fetchData() {
 	const result = await fetch(`/api/topSellers?${params}`);
 	if (!result.ok) throw new Error('인기 게임 목록 요청 실패');
 	const data = await result.json();
-	return data.results || [];
+	return data || [];
 }
 const groupEventsByDate = (events) => {
 	const map = new Map();
@@ -35,6 +35,7 @@ export default function MainInfo() {
 	if (isLoading) return <p>로딩 중...</p>;
 	if (error) return <p>에러 발생: {(error as Error).message}</p>;
 	const eventMap = groupEventsByDate(data);
+	console.log(data);
   return (
 		<div className="max-w-[1200px] m-auto">
 			<div>

@@ -60,9 +60,10 @@ const Calendar = ({ eventMap }) => {
 								<div>
 									{visibleEvents.map((event) => (
 										<div key={event.id} className="mb-3 text-xs">
-											<figure>
-												<img src={event.background_image} />
-											</figure>
+											<div style={{
+												'backgroundImage' : `url(${event.background_image})`
+											}}>
+											</div>
 											{event.name}
 										</div>
 									))}
