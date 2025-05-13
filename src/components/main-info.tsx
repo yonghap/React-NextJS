@@ -37,7 +37,7 @@ export default function MainInfo() {
 	const eventMap = groupEventsByDate(data);
 	console.log(data);
   return (
-		<div className="max-w-[1200px] m-auto">
+		<div className="max-w-[90%] m-auto">
 			<div>
 				<Calendar eventMap={eventMap}></Calendar>
 			</div>

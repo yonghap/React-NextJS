@@ -52,23 +52,26 @@ const Calendar = ({ eventMap }) => {
 					const visibleEvents = dayEvents.slice(0, maxVisible);
 					const extraCount = dayEvents.length - maxVisible;
 					return (
-						<div key={idx} className="border -ml-px -mb-px pb-4 text-slate-50">
-							<div className="flex items-start">
-								<strong className="absolute w-[30px] shrink-0 text-slate-50 text-center">
+						<div key={idx} className="overflow-hidden m-1 mb-4 pb-4 rounded-sm">
+							<div >
+								<strong className="block px-2 text-md bg-gradient-to-r from-slate-50 to-slate-300">
 									{date['date']}
 								</strong>
 								<div>
 									{visibleEvents.map((event) => (
-										<div key={event.id} className="mb-3 text-xs">
-											<div style={{
-												'backgroundImage' : `url(${event.background_image})`
+										<div key={event.id} className="relative mb-2 text-xs">
+											<div className="w-full pt-[60%] opacity-70 rounded-b-sm shadow-md" style={{
+												'background' : `url(${event.background_image}) no-repeat 50% 50%`,
+												'backgroundSize' : 'cover'
 											}}>
 											</div>
-											{event.name}
+											<h2 className="absolute bottom-0 left- 1 text-sm text-slate-50 p-2 font-semibold leading-4">
+												{event.name}
+											</h2>
 										</div>
 									))}
 									{extraCount > 0 && (
-										<div className="event-more">+ {extraCount}개 더보기</div>
+										<div className="event-more mt-2 text-3xl text-slate-100 text-center opacity-70">+</div>
 									)}
 								</div>
 							</div>
