@@ -1,3 +1,5 @@
+import { Platforms } from "@/constants/platforms";
+
 // 공통함수
 export const formatPrice = (price:number) => {
 	if (!price) {
@@ -5,4 +7,12 @@ export const formatPrice = (price:number) => {
 	}
 	const newPirce = Number(String(price).slice(0, -2))
 	return newPirce.toLocaleString('ko-KR')
+}
+
+export function convertSlugToPlatform(slug: string): Platforms | null {
+	const mapping: Record<string, Platforms> = {
+		pc: Platforms.PC,
+	};
+
+	return mapping[slug.toLowerCase()] || null;
 }

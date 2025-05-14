@@ -1,5 +1,6 @@
 // Calendar.js
 import React, { useState } from 'react';
+import { convertSlugToPlatform } from "@/utils/common";
 
 const DAYS = ['일', '월', '화', '수', '목', '금', '토'];
 
@@ -58,18 +59,25 @@ const Calendar = ({ eventMap }) => {
 									{date['date']}
 								</strong>
 								<div>
-									{visibleEvents.map((event) => (
+									{visibleEvents.map((event) => {
+										console.log(event.platforms);
+										return (
 										<div key={event.id} className="relative mb-2 text-xs">
 											<div className="w-full pt-[60%] opacity-70 rounded-b-sm shadow-md" style={{
-												'background' : `url(${event.background_image}) no-repeat 50% 50%`,
-												'backgroundSize' : 'cover'
-											}}>
+												'background': `url(${event.background_image}) no-repeat 50% 50%`,
+												'backgroundSize': 'cover'
+											}}/>
+											<div className="absolute bottom-0 left- 1 text-sm text-slate-50 p-2 font-semibold leading-4">
+												<h2>
+													{event.name}
+												</h2>
+												<div>
+													{ event.platforms && convertSlugToPlatform(event.platforms[0].platform.slug) }
+												</div>
 											</div>
-											<h2 className="absolute bottom-0 left- 1 text-sm text-slate-50 p-2 font-semibold leading-4">
-												{event.name}
-											</h2>
 										</div>
-									))}
+										)
+									})}
 									{extraCount > 0 && (
 										<div className="event-more mt-2 text-3xl text-slate-100 text-center opacity-70">+</div>
 									)}
