@@ -72,7 +72,11 @@ const Calendar = ({ eventMap }) => {
 													{event.name}
 												</h2>
 												<div>
-													{ event.platforms && convertSlugToPlatform(event.platforms[0].platform.slug) }
+													{event.platforms?.map((platform, index) => (
+														<span key={index}>
+                              {convertSlugToPlatform(platform.platform.slug)}
+                            </span>
+													))}
 												</div>
 											</div>
 										</div>

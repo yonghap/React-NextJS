@@ -12,6 +12,8 @@ export const formatPrice = (price:number) => {
 export function convertSlugToPlatform(slug: string): Platforms | null {
 	const mapping: Record<string, Platforms> = {
 		pc: Platforms.PC,
+		playstation5: Platforms.PS,
+		"xbox-one": Platforms.Xbox
 	};
 
 	return mapping[slug.toLowerCase()] || null;

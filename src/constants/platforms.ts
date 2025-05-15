@@ -1,3 +1,5 @@
 export enum Platforms {
-	PC = 'PC'
+	PC = 'PC',
+	PS = 'PS',
+	Xbox = 'Xbox'
 }
