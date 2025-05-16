@@ -9,7 +9,7 @@ const queryClient = new QueryClient();
 export default function RootLayout({ children }: { children: ReactNode }) {
 	return (
 		<html lang="ko">
-		<body className="min-h-screen" style={{ backgroundImage: `url(${bgImage.src})`, backgroundSize:'cover', backgroundRepeat:'no-repeat' }}>
+		<body className="min-h-screen font-pretendard" style={{ backgroundImage: `url(${bgImage.src})`, backgroundSize:'cover', backgroundRepeat:'no-repeat' }}>
 			<div>
 				<QueryClientProvider client={queryClient}>
 					{children}
