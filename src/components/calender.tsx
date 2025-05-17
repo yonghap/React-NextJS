@@ -57,12 +57,16 @@ const Calendar = ({ eventMap }) => {
 
 	return (
 		<div>
-			<h2>{year} - {month + 1}</h2>
-			<button onClick={prevMonth}>◀</button>
-			<button onClick={nextMonth}>▶</button>
+			<div className="text-center flex justify-center text-slate-50">
+				<button onClick={prevMonth}>◀</button>
+				<h2 className="mx-6 text-3xl">{year} - {month + 1}</h2>
+				<button onClick={nextMonth}>▶</button>
+			</div>
 			<div className="grid grid-cols-[repeat(7,1fr)] mt-4">
 				{DAYS.map(day => (
-					<div key={day} className="text-slate-200 font-bold py-6 text-center text-2xl">{day}</div>
+					<div key={day} className="text-slate-200 font-bold py-6 text-center text-2xl">
+						{day}
+					</div>
 				))}
 				{dates.map((date, idx) => {
 					const dayEvents = eventMap.get(date.text) || []
